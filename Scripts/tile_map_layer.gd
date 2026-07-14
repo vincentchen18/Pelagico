@@ -23,7 +23,7 @@ func _process(_delta: float) -> void:
 #generate chunk
 func gen_chunk(cx, cy) -> void:
 	var chunkkey = Vector2i(cx, cy)
-	var tilepos: Vector2 = Vector2.ZERO
+	var tilepos: Vector2i = Vector2i.ZERO
 	var currentchunk: Array = []
 	var startx: int = cx * 8
 	var starty: int = cy * 8
@@ -44,9 +44,8 @@ func gen_chunk(cx, cy) -> void:
 				else: 
 					currentlis.append("o")
 					tilepos = oceantilespos
-			set_cell(Vector2i(globalx, globaly), sourceid, tilepos)
+			set_cell(Vector2i(globalx, globaly), sourceid, tilepos, 0)
 		currentchunk.append(currentlis)
-
 	worldmap[chunkkey] = currentchunk 	
 func playerchunk(playerpos) -> Vector2i:
 	var pixelsperchunk: float = 256

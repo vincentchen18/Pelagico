@@ -45,3 +45,10 @@ zoom = Vector2(2, 2)
 
 [node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=899912236]
 texture = ExtResource("3_ihpsq")
+
+[node name="ProgressBar" type="ProgressBar" parent="Player" unique_id=1604817671]
+offset_left = -13.0
+offset_top = -25.0
+offset_right = 13.0
+offset_bottom = -20.0
+show_percentage = false
