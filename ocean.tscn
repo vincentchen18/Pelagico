@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cf2cchhw3svwq" path="res://Scripts/tile_map_layer.gd" id="2_bwgqs"]
 [ext_resource type="Script" uid="uid://desdkck6u5g7u" path="res://Scripts/player.gd" id="3_bwgqs"]
 [ext_resource type="Texture2D" uid="uid://bsc8nxlprgutb" path="res://Assets/tempsprite.png" id="3_ihpsq"]
+[ext_resource type="Script" uid="uid://curosp1x82ykl" path="res://progress_bar.gd" id="5_ihpsq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0e48y"]
 texture = ExtResource("1_nb2vx")
@@ -52,3 +53,4 @@ offset_top = -25.0
 offset_right = 13.0
 offset_bottom = -20.0
 show_percentage = false
+script = ExtResource("5_ihpsq")
