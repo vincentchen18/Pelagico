@@ -9,11 +9,11 @@ extends CharacterBody2D
 
 func _physics_process(delta):
 	# turning
-	var turn = Input.get_axis("ui_left", "ui_right")
+	var turn = Input.get_axis("left", "right")
 	rotation += turn * turn_speed * delta
 
 	# fwd/bkwd
-	var thrust = Input.get_axis("ui_down", "ui_up")  # up = forward
+	var thrust = Input.get_axis("backward", "forward") 
 	if thrust != 0:
 		# go in the curr direction
 		var forward = Vector2.RIGHT.rotated(rotation)
