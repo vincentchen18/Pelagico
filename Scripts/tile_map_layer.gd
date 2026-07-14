@@ -38,8 +38,12 @@ func gen_chunk(cx, cy) -> void:
 				currentlis.append("x")
 				tilepos = walltilepos
 			else:
-				currentlis.append("o")
-				tilepos = oceantilespos
+				if noise.get_noise_2d(globalx - 1, globaly) > 0.45 and noise.get_noise_2d(globalx, globaly - 1) > 0.45 and noise.get_noise_2d(globalx + 1, globaly) > 0.45 and noise.get_noise_2d(globalx, globaly + 1) > 0.45:
+					currentlis.append("x")
+					tilepos = walltilepos
+				else: 
+					currentlis.append("o")
+					tilepos = oceantilespos
 			set_cell(Vector2i(globalx, globaly), sourceid, tilepos)
 		currentchunk.append(currentlis)
 
