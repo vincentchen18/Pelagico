@@ -1,11 +1,10 @@
-[gd_scene format=3 uid="uid://hoewtcx4cyqd"]
+[gd_scene format=3 uid="uid://gw2sy1y1p6np"]
 
 [ext_resource type="Texture2D" uid="uid://cjvsuo6tc6gc1" path="res://Assets/PlaceHolder Sprites.png" id="1_antt5"]
 [ext_resource type="Script" uid="uid://cf2cchhw3svwq" path="res://Scripts/tile_map_layer.gd" id="2_eqe0k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0hol4"]
 texture = ExtResource("1_antt5")
-texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 1:0/0 = 0
 0:1/0 = 0

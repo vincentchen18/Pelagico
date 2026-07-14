@@ -43,5 +43,3 @@ func gen_chunk(cx, cy) -> void:
 		currentchunk.append(currentlis)
 	var chunkkey = Vector2i(cx, cy)
 	worldmap[chunkkey] = currentchunk 	
-
-
