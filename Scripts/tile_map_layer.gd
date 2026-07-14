@@ -53,6 +53,3 @@ func playerchunk(playerpos) -> Vector2i:
 	var playerchunkx: int = int(floor(playerpos.x/pixelsperchunk))
 	var playerchunky: int = int(floor(playerpos.y/pixelsperchunk))
 	return Vector2i(playerchunkx, playerchunky)
-
-
-
