@@ -5,28 +5,29 @@ var noise = FastNoiseLite.new()
 var chunkvector = Vector2(0 , 0)
 const oceantilespos = Vector2i(0, 0)
 const walltilepos = Vector2i(0, 1)
+@export var player: Node2D
 var chunkoffset: Vector2 = Vector2.ZERO
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
 	noise.seed = randi()
 	noise.frequency = 0.12
-	for i in range (-1, 2):
-		for j in range(-1, 2):
-			chunkoffset = Vector2(j, i)
-			gen_chunk(chunkvector.x + chunkoffset.x, chunkvector.y + chunkoffset.y)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	pass
+	var playerchunky: Vector2i = playerchunk(player.global_position)
+	for x in range(-2 + playerchunky.x, 3 + playerchunky.x):
+		for y in range(-2 + playerchunky.y, 3 + playerchunky.y):
+			gen_chunk(x, y) 
 
 #generate chunk
-
 func gen_chunk(cx, cy) -> void:
+	var chunkkey = Vector2i(cx, cy)
 	var tilepos: Vector2 = Vector2.ZERO
 	var currentchunk: Array = []
 	var startx: int = cx * 8
 	var starty: int = cy * 8
+	if worldmap.has(chunkkey): return
 	for i in range(8):
 		var currentlis: Array = []
 		for j in range(8):
@@ -41,5 +42,13 @@ func gen_chunk(cx, cy) -> void:
 				tilepos = oceantilespos
 			set_cell(Vector2i(globalx, globaly), sourceid, tilepos)
 		currentchunk.append(currentlis)
-	var chunkkey = Vector2i(cx, cy)
+
 	worldmap[chunkkey] = currentchunk 	
+func playerchunk(playerpos) -> Vector2i:
+	var pixelsperchunk: float = 256
+	var playerchunkx: int = int(floor(playerpos.x/pixelsperchunk))
+	var playerchunky: int = int(floor(playerpos.y/pixelsperchunk))
+	return Vector2i(playerchunkx, playerchunky)
+
+
+
