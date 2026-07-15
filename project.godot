@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Pelagico"
-run/main_scene="uid://doic7q671l7po"
+run/main_scene="uid://eodccutfbrh1"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
