@@ -24,7 +24,7 @@ func _physics_process(delta):
 	var rotforwardspeed = speed * 0.8
 	var forward = Vector2.RIGHT.rotated(rotation)
 	# fwd/bkwd
-	var thrust = Input.get_axis("backward", "forward") 
+	var thrust = max(Input.get_axis("backward", "forward"), 0.0)	
 	if thrust != 0:
 		animtimer = 0.15
 		if Input.is_key_pressed(KEY_SHIFT) and stamina > 0:
