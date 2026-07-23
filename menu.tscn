@@ -5,10 +5,6 @@
 
 [node name="Node2D" type="Node2D" unique_id=540743526]
 
-[node name="Button" type="Button" parent="." unique_id=1710907858]
-offset_right = 8.0
-offset_bottom = 8.0
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=289543329]
 position = Vector2(-104.5, -38)
 
