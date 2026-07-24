@@ -1,9 +1,9 @@
 extends TileMapLayer
-const sourceid = 0
+const sourceid = 2
 var worldmap: Dictionary = {}
 var noise = FastNoiseLite.new()
 var chunkvector = Vector2(0 , 0)
-const oceantilespos = Vector2i(0, 0)
+var oceantilespos = Vector2i(0, 0)
 const walltilepos = Vector2i(0, 1)
 @export var player: Node2D
 var chunkoffset: Vector2 = Vector2.ZERO
@@ -27,6 +27,10 @@ func gen_chunk(cx, cy) -> void:
 	var currentchunk: Array = []
 	var startx: int = cx * 8
 	var starty: int = cy * 8
+	if cx > 5:
+		oceantilespos = Vector2i(0, 3)
+	else:
+		oceantilespos = Vector2i(0, 0)
 	if worldmap.has(chunkkey): return
 	for i in range(8):
 		var currentlis: Array = []

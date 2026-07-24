@@ -1,29 +1,25 @@
 [gd_scene format=4 uid="uid://doic7q671l7po"]
 
-[ext_resource type="Texture2D" uid="uid://cjvsuo6tc6gc1" path="res://Assets/PlaceHolder Sprites.png" id="1_nb2vx"]
+[ext_resource type="Texture2D" uid="uid://c16oc7mtef88y" path="res://Assets/PlaceHolder Sprites.png" id="1_n3fli"]
 [ext_resource type="Script" uid="uid://cf2cchhw3svwq" path="res://Scripts/tile_map_layer.gd" id="2_bwgqs"]
 [ext_resource type="Script" uid="uid://desdkck6u5g7u" path="res://Scripts/player.gd" id="3_bwgqs"]
 [ext_resource type="Script" uid="uid://curosp1x82ykl" path="res://progress_bar.gd" id="5_ihpsq"]
 [ext_resource type="Texture2D" uid="uid://veft6sl5q430" path="res://Assets/Fish.png" id="5_n3fli"]
 [ext_resource type="Texture2D" uid="uid://oexgm3bwt4ku" path="res://Assets/Fish1spritesheet.png" id="6_n3fli"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0e48y"]
-texture = ExtResource("1_nb2vx")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n3fli"]
+texture = ExtResource("1_n3fli")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
-1:0/0 = 0
 0:1/0 = 0
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
-1:1/0 = 0
 0:2/0 = 0
-1:2/0 = 0
 0:3/0 = 0
-1:3/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_0e48y"]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_0e48y")
+sources/2 = SubResource("TileSetAtlasSource_n3fli")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2dx8q"]
 size = Vector2(56, 12)
@@ -55,22 +51,22 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_qijwg")
 }, {
-"duration": 1.5,
+"duration": 0.75,
 "texture": SubResource("AtlasTexture_v5bp3")
 }, {
-"duration": 1.5,
+"duration": 0.75,
 "texture": SubResource("AtlasTexture_06qne")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_nrb0v")
 }, {
-"duration": 1.5,
+"duration": 0.75,
 "texture": SubResource("AtlasTexture_06qne")
 }, {
-"duration": 1.5,
+"duration": 0.75,
 "texture": SubResource("AtlasTexture_v5bp3")
 }],
 "loop": 1,
