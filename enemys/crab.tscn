@@ -23,7 +23,7 @@ collision_mask = 3
 script = ExtResource("1_wad7g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1827616383]
-scale = Vector2(0.06, 0.06)
+scale = Vector2(0.04, 0.04)
 sprite_frames = SubResource("SpriteFrames_br8fx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1405066182]

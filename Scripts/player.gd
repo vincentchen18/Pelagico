@@ -1,6 +1,13 @@
 extends CharacterBody2D
 
+var dashing := false
+var dash_timer := 0.0
+var cooldown_timer := 0.0
+var dash_dir := Vector2.RIGHT
 @export var speed := 235
+@export var dash_speed := speed*2
+@export var dash_time := 0.03
+@export var dash_cooldown := 1.5
 @export var acceleration := 4.0
 @export var drag := 2.0
 @export var turn_speed := 3.0   # radians/sec when turning
@@ -15,6 +22,21 @@ var animtimer: float = 0.15
 func _ready() -> void:
 	staminabar.position = Vector2(-13, -25)
 func _physics_process(delta):
+	cooldown_timer = max(cooldown_timer - delta, 0.0)
+
+	if dashing:
+		dash_timer -= delta
+		velocity = dash_dir * dash_speed
+		move_and_slide()
+		if dash_timer <= 0.0:
+			dashing = false
+		return
+
+	if Input.is_action_just_pressed("dash") and cooldown_timer <= 0.0:
+		dashing = true
+		dash_timer = dash_time
+		cooldown_timer = dash_cooldown
+		dash_dir = Vector2.RIGHT.rotated(rotation)
 	var boosting: bool = false
 	# turning
 	#added forward momentum when rotation for realism
@@ -24,7 +46,11 @@ func _physics_process(delta):
 	var rotforwardspeed = speed * 0.8
 	var forward = Vector2.RIGHT.rotated(rotation)
 	# fwd/bkwd
-	var thrust = max(Input.get_axis("backward", "forward"), 0.0)	
+	var thrust = 0
+	if Input.is_action_pressed("forward"):
+		thrust += 1.0
+	elif Input.is_action_pressed("backward"):
+		thrust -= 0.2
 	if thrust != 0:
 		animtimer = 0.15
 		if Input.is_key_pressed(KEY_SHIFT) and stamina > 0:
