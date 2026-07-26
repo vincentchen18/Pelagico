@@ -15,13 +15,17 @@ var dash_dir := Vector2.RIGHT
 @export var boostmult: float = 1.4
 @export var animplaymult: float = 1.0
 @export var anim_speed := 0.5
+@export var regen_delay := 5.0
+@export var regen_amt := 0.08
+var since_hit := 999.0
 var stamina: float = maxstamina
 @onready var sprite: Node2D = $Sprite2D
-@onready var staminabar: ProgressBar = $ProgressBar
+@onready var healthbar: ProgressBar = $healthbar
 var animtimer: float = 0.15
-func _ready() -> void:
-	staminabar.position = Vector2(-13, -25)
 func _physics_process(delta):
+	since_hit += delta
+	if since_hit >= regen_delay and healthbar.health < healthbar.max_health:
+		healthbar.heal(healthbar.max_health * regen_amt * delta)
 	cooldown_timer = max(cooldown_timer - delta, 0.0)
 
 	if dashing:
@@ -53,13 +57,8 @@ func _physics_process(delta):
 		thrust -= 0.2
 	if thrust != 0:
 		animtimer = 0.15
-		if Input.is_key_pressed(KEY_SHIFT) and stamina > 0:
-			stamina -= 20 * delta
-			velocity = velocity.lerp(forward * speed * thrust * boostmult, acceleration * delta * boostmult)
-			boosting = true
-		else:
-			velocity = velocity.lerp(forward * speed * thrust, acceleration * delta)
-			boosting = false
+		velocity = velocity.lerp(forward * speed * thrust, acceleration * delta)
+
 		animplaymult = max(velocity.length()/speed, 1)
 		$AnimatedSprite2D.speed_scale = animplaymult * anim_speed
 		$AnimatedSprite2D.play("swim")
@@ -86,8 +85,8 @@ func _physics_process(delta):
 	if velocity.length() > 150:
 		var rotweight = log(velocity.length())/(log(12) * 26)
 		rotation = lerp_angle(rotation, velocity.angle(), rotweight)
-	stamina = clamp(stamina, 0, maxstamina)
-	if boosting == false:
-		stamina += 8 * delta
-	staminabar.value = stamina
+
 	move_and_slide()
+func hit(amount):
+	healthbar.take_damage(amount)
+	since_hit = 0.0

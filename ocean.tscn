@@ -1,10 +1,10 @@
 [gd_scene format=4 uid="uid://doic7q671l7po"]
 
-[ext_resource type="Script" uid="uid://dorlqcmmxtk38" path="res://ocean.gd" id="1_06qne"]
+[ext_resource type="Script" uid="uid://dorlqcmmxtk38" path="res://Scripts/ocean.gd" id="1_06qne"]
 [ext_resource type="Texture2D" uid="uid://c16oc7mtef88y" path="res://Assets/PlaceHolder Sprites.png" id="1_n3fli"]
 [ext_resource type="Script" uid="uid://cf2cchhw3svwq" path="res://Scripts/tile_map_layer.gd" id="2_bwgqs"]
 [ext_resource type="Script" uid="uid://desdkck6u5g7u" path="res://Scripts/player.gd" id="3_bwgqs"]
-[ext_resource type="Script" uid="uid://curosp1x82ykl" path="res://progress_bar.gd" id="5_ihpsq"]
+[ext_resource type="Script" uid="uid://curosp1x82ykl" path="res://Scripts/healthbar.gd" id="5_ihpsq"]
 [ext_resource type="Texture2D" uid="uid://veft6sl5q430" path="res://Assets/Fish.png" id="5_n3fli"]
 [ext_resource type="Texture2D" uid="uid://oexgm3bwt4ku" path="res://Assets/Fish1spritesheet.png" id="6_n3fli"]
 [ext_resource type="Script" uid="uid://cdrqpsuklvint" path="res://spawnlayer.gd" id="8_nrb0v"]
@@ -98,7 +98,7 @@ shape = SubResource("RectangleShape2D_2dx8q")
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1085843557]
 zoom = Vector2(2, 2)
 
-[node name="ProgressBar" type="ProgressBar" parent="Player" unique_id=1604817671]
+[node name="healthbar" type="ProgressBar" parent="Player" unique_id=1604817671]
 offset_left = -13.0
 offset_top = -25.0
 offset_right = 13.0
