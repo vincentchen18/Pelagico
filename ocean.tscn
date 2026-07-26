@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://curosp1x82ykl" path="res://Scripts/healthbar.gd" id="5_ihpsq"]
 [ext_resource type="Texture2D" uid="uid://veft6sl5q430" path="res://Assets/Fish.png" id="5_n3fli"]
 [ext_resource type="Texture2D" uid="uid://oexgm3bwt4ku" path="res://Assets/Fish1spritesheet.png" id="6_n3fli"]
-[ext_resource type="Script" uid="uid://cdrqpsuklvint" path="res://spawnlayer.gd" id="8_nrb0v"]
+[ext_resource type="Script" uid="uid://cdrqpsuklvint" path="res://Scripts/spawnlayer.gd" id="8_nrb0v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n3fli"]
 texture = ExtResource("1_n3fli")
@@ -79,6 +79,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_br8fx"]
+size = Vector2(10, 20)
+
 [node name="ocean" type="Node2D" unique_id=1002492690]
 script = ExtResource("1_06qne")
 
@@ -111,6 +114,14 @@ rotation = 1.5707964
 scale = Vector2(0.06, 0.06)
 sprite_frames = SubResource("SpriteFrames_qijwg")
 animation = &"swim"
+
+[node name="DashHitbox" type="Area2D" parent="Player" unique_id=1958051462]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/DashHitbox" unique_id=1726958769]
+position = Vector2(35, 0)
+shape = SubResource("RectangleShape2D_br8fx")
 
 [node name="spawnlayer" type="TileMapLayer" parent="." unique_id=1806730659]
 script = ExtResource("8_nrb0v")

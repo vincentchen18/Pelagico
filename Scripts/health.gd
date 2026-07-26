@@ -1,6 +1,6 @@
 extends ProgressBar
 
-var max_health := 100.0
+var max_health := 40
 var health := max_health
 
 func take_damage(amount):
@@ -30,4 +30,4 @@ func update_bar():
 	add_theme_stylebox_override("fill", fill)
 
 func _physics_process(_delta: float) -> void:
-	global_position = get_parent().get_node("Camera2D").global_position + Vector2(-13, 20)
+	position = get_parent().get_node("AnimatedSprite2D").global_position + Vector2(-13, 20)

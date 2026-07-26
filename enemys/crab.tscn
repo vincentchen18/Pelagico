@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bvo5j5wcwcpoo" path="res://Scripts/crab.gd" id="1_wad7g"]
 [ext_resource type="Texture2D" uid="uid://ddllks1osiy1o" path="res://Assets/crab.png" id="2_14etv"]
+[ext_resource type="Script" uid="uid://chb7buteqs4qr" path="res://Scripts/health.gd" id="3_2bl1u"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_br8fx"]
 animations = [{
@@ -17,6 +18,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wad7g"]
 size = Vector2(32, 32)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_br8fx"]
+size = Vector2(40, 40)
+
 [node name="crab" type="CharacterBody2D" unique_id=522453425]
 collision_layer = 4
 collision_mask = 3
@@ -28,3 +32,18 @@ sprite_frames = SubResource("SpriteFrames_br8fx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1405066182]
 shape = SubResource("RectangleShape2D_wad7g")
+
+[node name="health" type="ProgressBar" parent="." unique_id=1012203974]
+offset_right = 27.0
+offset_bottom = 4.0
+max_value = 40.0
+show_percentage = false
+script = ExtResource("3_2bl1u")
+
+[node name="attackHitbox" type="Area2D" parent="." unique_id=33987728]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attackHitbox" unique_id=1696018257]
+shape = SubResource("RectangleShape2D_br8fx")
+
+[connection signal="body_entered" from="attackHitbox" to="." method="_on_attack_hitbox_body_entered"]

@@ -1,13 +1,15 @@
 extends CharacterBody2D
-
 var dashing := false
 var dash_timer := 0.0
 var cooldown_timer := 0.0
 var dash_dir := Vector2.RIGHT
+var dash_hit_done := false
+var dash_hit_window := 0.0
 @export var speed := 235
 @export var dash_speed := speed*2
 @export var dash_time := 0.03
 @export var dash_cooldown := 1.5
+@export var base_damage := 20.0
 @export var acceleration := 4.0
 @export var drag := 2.0
 @export var turn_speed := 3.0   # radians/sec when turning
@@ -23,11 +25,21 @@ var stamina: float = maxstamina
 @onready var healthbar: ProgressBar = $healthbar
 var animtimer: float = 0.15
 func _physics_process(delta):
+	if healthbar.health <= 0.0:
+		healthbar.health = healthbar.max_health
+		global_position = Vector2(0, 0)
+		healthbar.update_bar()
 	since_hit += delta
 	if since_hit >= regen_delay and healthbar.health < healthbar.max_health:
 		healthbar.heal(healthbar.max_health * regen_amt * delta)
 	cooldown_timer = max(cooldown_timer - delta, 0.0)
-
+	dash_hit_window = max(dash_hit_window - delta, 0.0)
+	if dash_hit_window > 0.0 and not dash_hit_done:
+		for body in $DashHitbox.get_overlapping_bodies():
+			if body.is_in_group("enemy") and body.has_method("hit"):
+				body.hit(base_damage)
+				dash_hit_done = true
+				break
 	if dashing:
 		dash_timer -= delta
 		velocity = dash_dir * dash_speed
@@ -35,11 +47,12 @@ func _physics_process(delta):
 		if dash_timer <= 0.0:
 			dashing = false
 		return
-
 	if Input.is_action_just_pressed("dash") and cooldown_timer <= 0.0:
 		dashing = true
 		dash_timer = dash_time
+		dash_hit_window = 0.15
 		cooldown_timer = dash_cooldown
+		dash_hit_done = false
 		dash_dir = Vector2.RIGHT.rotated(rotation)
 	var boosting: bool = false
 	# turning
@@ -58,7 +71,6 @@ func _physics_process(delta):
 	if thrust != 0:
 		animtimer = 0.15
 		velocity = velocity.lerp(forward * speed * thrust, acceleration * delta)
-
 		animplaymult = max(velocity.length()/speed, 1)
 		$AnimatedSprite2D.speed_scale = animplaymult * anim_speed
 		$AnimatedSprite2D.play("swim")
@@ -85,7 +97,6 @@ func _physics_process(delta):
 	if velocity.length() > 150:
 		var rotweight = log(velocity.length())/(log(12) * 26)
 		rotation = lerp_angle(rotation, velocity.angle(), rotweight)
-
 	move_and_slide()
 func hit(amount):
 	healthbar.take_damage(amount)
