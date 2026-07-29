@@ -12,13 +12,20 @@ var dir := 1
 @onready var healthbar = $health
 @export var hit_interval := 1.0
 var hit_cd := 0.0
-
+@export var regen_delay := 5.0
+@export var regen_amt := 0.02
+var since_hit := 999.0
 
 func hit(amount):
 	healthbar.take_damage(amount)
+	since_hit = 0.0
 	if healthbar.health <= 0:
 		die()
 func _physics_process(delta: float) -> void:
+	since_hit += delta
+	if since_hit >= regen_delay and healthbar.health < healthbar.max_health:
+		healthbar.heal(healthbar.max_health * regen_amt * delta)
+	
 	hit_cd = max(hit_cd - delta, 0.0)
 
 	if hit_cd <= 0.0:
