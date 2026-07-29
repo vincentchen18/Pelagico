@@ -23,10 +23,12 @@ var since_hit := 999.0
 var stamina: float = maxstamina
 @onready var sprite: Node2D = $Sprite2D
 @onready var healthbar: ProgressBar = $healthbar
+@onready var xpbar: ProgressBar = $xpbar
 var animtimer: float = 0.15
 func _physics_process(delta):
 	if healthbar.health <= 0.0:
 		healthbar.health = healthbar.max_health
+		xpbar.death()
 		global_position = Vector2(0, 0)
 		healthbar.update_bar()
 	since_hit += delta
