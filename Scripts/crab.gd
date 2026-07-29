@@ -41,6 +41,9 @@ func _physics_process(delta: float) -> void:
 		dir *= -1
 	sprite.flip_h = dir < 0
 func die():
+	var xpbar = get_node_or_null("/root/ocean/Player/xpbar")
+	if xpbar:
+		xpbar.value += 4.0
 	queue_free()
 func _ready() -> void:
 	healthbar.max_health = max_health

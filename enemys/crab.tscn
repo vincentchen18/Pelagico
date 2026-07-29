@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dcytviy6i2hpb"]
 
 [ext_resource type="Script" uid="uid://bvo5j5wcwcpoo" path="res://Scripts/crab.gd" id="1_wad7g"]
-[ext_resource type="Texture2D" uid="uid://ddllks1osiy1o" path="res://Assets/crab.png" id="2_14etv"]
+[ext_resource type="Texture2D" uid="uid://byfyjv2r4rwut" path="res://Assets/crab.png" id="2_14etv"]
 [ext_resource type="Script" uid="uid://chb7buteqs4qr" path="res://Scripts/health.gd" id="3_2bl1u"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_br8fx"]
