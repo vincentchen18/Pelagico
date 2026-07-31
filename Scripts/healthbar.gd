@@ -24,6 +24,7 @@ func _ready() -> void:
 	update_bar()
 func update_bar():
 	value = health
+	max_value = max_health
 	var t := float(health) / max_health
 	var fill := StyleBoxFlat.new()
 	fill.bg_color = Color(1.0 - t, t, 0.2)  # make red->green as health go up

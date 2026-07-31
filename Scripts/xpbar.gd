@@ -3,13 +3,23 @@ extends ProgressBar
 var max_xp := 40.0
 var xp := 0.0
 var stage := 0
+@onready var player: CharacterBody2D = get_parent()
+@onready var healthbar: ProgressBar = get_parent().get_node("healthbar")
 @export var growth_thresholds := [40.0, 200.0, 800.0, 3000.0, 999999999999999999999999999999999999999.0]
+@export var health_bars := [100.0, 200.0, 400.0, 700.0, 1000.0]
+@export var damages := [20.0, 35.0, 60.0, 90.0, 150.0]
+
 func gain_xp(num: float):
 	xp += num
 	if xp >= growth_thresholds[stage]:
 		stage += 1
-		xp -= growth_thresholds[stage-1]
+		print("hi", stage)
+		xp = 0
 		max_value = growth_thresholds[stage]
+		healthbar.max_health = health_bars[stage]
+		healthbar.update_bar()
+		player.base_damage = damages[stage]
+	
 	update_bar()
 		
 func death():
