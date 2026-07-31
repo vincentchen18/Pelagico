@@ -8,17 +8,25 @@ var stage := 0
 @export var growth_thresholds := [40.0, 200.0, 800.0, 3000.0, 999999999999999999999999999999999999999.0]
 @export var health_bars := [100.0, 200.0, 400.0, 700.0, 1000.0]
 @export var damages := [20.0, 35.0, 60.0, 90.0, 150.0]
+@export var speeds := [235.0, 260.0, 300.0, 350.0, 400.0]
+@export var regens := [0.08, 0.1, 0.1, 0.12, 0.14]
+@export var regens_delays := [5.0, 4.5, 4.0, 3.7, 3.5]
+
 
 func gain_xp(num: float):
 	xp += num
 	if xp >= growth_thresholds[stage]:
 		stage += 1
-		print("hi", stage)
 		xp = 0
 		max_value = growth_thresholds[stage]
 		healthbar.max_health = health_bars[stage]
 		healthbar.update_bar()
 		player.base_damage = damages[stage]
+		player.speed = speeds[stage]
+		player.dash_speed = speeds[stage] * 2
+		player.regen_amt = regens[stage]
+		player.regen_delay = regens_delays[stage]
+		player.since_hit = 5.0 #immediately regen upon level up
 	
 	update_bar()
 		
@@ -45,4 +53,5 @@ func update_bar():
 	add_theme_stylebox_override("fill", fill)
 
 func _physics_process(delta: float) -> void:
+	gain_xp(10.0*delta)
 	position = get_parent().get_node("AnimatedSprite2D").global_position + Vector2(-13, 25)
