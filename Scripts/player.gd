@@ -52,7 +52,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("dash") and cooldown_timer <= 0.0:
 		dashing = true
 		dash_timer = dash_time
-		dash_hit_window = 0.15
+		dash_hit_window = 0.2
 		cooldown_timer = dash_cooldown
 		dash_hit_done = false
 		dash_dir = Vector2.RIGHT.rotated(rotation)

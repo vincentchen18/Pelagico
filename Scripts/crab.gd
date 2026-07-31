@@ -7,12 +7,12 @@ var dir := 1
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @export var max_health := 40.0
-@export var damage := 10.0
+@export var damage := 5.0
 
 @onready var healthbar = $health
 @export var hit_interval := 1.0
 var hit_cd := 0.0
-@export var regen_delay := 5.0
+@export var regen_delay := 8.0
 @export var regen_amt := 0.02
 var since_hit := 999.0
 
@@ -43,7 +43,8 @@ func _physics_process(delta: float) -> void:
 func die():
 	var xpbar = get_node_or_null("/root/ocean/Player/xpbar")
 	if xpbar:
-		xpbar.value += 4.0
+		xpbar.xp += 4.0
+		xpbar.update_bar()
 	queue_free()
 func _ready() -> void:
 	healthbar.max_health = max_health
@@ -51,10 +52,6 @@ func _ready() -> void:
 	healthbar.update_bar()
 	scale = Vector2.ONE * scale_mult
 	add_to_group("enemy")
-	var mat: Material = sprite.material
-	if mat:
-		sprite.material = mat.duplicate()
-	sprite.play("walk")
 
 
 

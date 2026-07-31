@@ -16,10 +16,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wad7g"]
-size = Vector2(32, 32)
+size = Vector2(24, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_br8fx"]
-size = Vector2(40, 40)
+size = Vector2(26, 26)
 
 [node name="crab" type="CharacterBody2D" unique_id=522453425]
 collision_layer = 4
@@ -27,7 +27,7 @@ collision_mask = 3
 script = ExtResource("1_wad7g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1827616383]
-scale = Vector2(0.04, 0.04)
+scale = Vector2(0.03, 0.03)
 sprite_frames = SubResource("SpriteFrames_br8fx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1405066182]

@@ -51,7 +51,7 @@ func gen_chunk(cx, cy) -> void:
 				else:
 					currentlis.append("o")
 					tilepos = oceantilespos
-					if noise.get_noise_2d(globalx, globaly + 1) > 0.45 and randf() < CRAB_CHANCE:
+					if noise.get_noise_2d(globalx, globaly + 1) > 0.45 and randf() < CRAB_CHANCE+2:
 						spawn_crab(Vector2i(globalx, globaly))
 			set_cell(Vector2i(globalx, globaly), sourceid, tilepos, 0)
 		currentchunk.append(currentlis)
