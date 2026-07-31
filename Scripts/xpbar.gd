@@ -53,5 +53,4 @@ func update_bar():
 	add_theme_stylebox_override("fill", fill)
 
 func _physics_process(delta: float) -> void:
-	gain_xp(10.0*delta)
 	position = get_parent().get_node("AnimatedSprite2D").global_position + Vector2(-13, 25)
