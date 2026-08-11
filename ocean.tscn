@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://doic7q671l7po"]
 
 [ext_resource type="Script" uid="uid://dorlqcmmxtk38" path="res://Scripts/ocean.gd" id="1_06qne"]
-[ext_resource type="Texture2D" uid="uid://c16oc7mtef88y" path="res://Assets/PlaceHolder Sprites.png" id="1_n3fli"]
 [ext_resource type="Script" uid="uid://cf2cchhw3svwq" path="res://Scripts/tile_map_layer.gd" id="2_bwgqs"]
+[ext_resource type="Texture2D" uid="uid://c1qidhjr6dube" path="res://Assets/tilset.png" id="2_nrb0v"]
 [ext_resource type="Script" uid="uid://desdkck6u5g7u" path="res://Scripts/player.gd" id="3_bwgqs"]
 [ext_resource type="Script" uid="uid://curosp1x82ykl" path="res://Scripts/healthbar.gd" id="5_ihpsq"]
 [ext_resource type="Texture2D" uid="uid://veft6sl5q430" path="res://Assets/Fish.png" id="5_n3fli"]
@@ -10,22 +10,27 @@
 [ext_resource type="Script" uid="uid://cdrqpsuklvint" path="res://Scripts/spawnlayer.gd" id="8_nrb0v"]
 [ext_resource type="Script" uid="uid://8xhvh7pfihdr" path="res://Scripts/xpbar.gd" id="8_v5bp3"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n3fli"]
-texture = ExtResource("1_n3fli")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v5bp3"]
+texture = ExtResource("2_nrb0v")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:0/0 = 0
 0:1/0 = 0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+1:1/0 = 0
 0:2/0 = 0
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 0:3/0 = 0
-0:3/0/custom_data_0 = "crab"
+1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
 [sub_resource type="TileSet" id="TileSet_0e48y"]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 custom_data_layer_0/name = "spawn"
 custom_data_layer_0/type = 4
-sources/2 = SubResource("TileSetAtlasSource_n3fli")
+sources/1 = SubResource("TileSetAtlasSource_v5bp3")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2dx8q"]
 size = Vector2(56, 12)

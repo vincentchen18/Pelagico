@@ -1,14 +1,14 @@
 extends TileMapLayer
 
-const sourceid = 2
-const walltilepos = Vector2i(0, 1)
+const sourceid = 1
+const walltilepos = Vector2i(1,2)
 const CRAB = preload("res://enemys/crab.tscn")
 const CRAB_CHANCE = 0.02
 
 var worldmap: Dictionary = {}
 var noise = FastNoiseLite.new()
 var chunkvector = Vector2(0, 0)
-var oceantilespos = Vector2i(0, 0)
+var oceantilespos = Vector2i(0, 1)
 var chunkoffset: Vector2 = Vector2.ZERO
 
 @export var player: Node2D
@@ -31,9 +31,9 @@ func gen_chunk(cx, cy) -> void:
 	var startx: int = cx * 8
 	var starty: int = cy * 8
 	if cx > 5:
-		oceantilespos = Vector2i(0, 3)
+		oceantilespos = Vector2i(0, 2)
 	else:
-		oceantilespos = Vector2i(0, 0)
+		oceantilespos = Vector2i(0, 1)
 	if worldmap.has(chunkkey): return
 	for i in range(8):
 		var currentlis: Array = []

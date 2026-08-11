@@ -43,7 +43,7 @@ func _physics_process(delta: float) -> void:
 func die():
 	var xpbar = get_node_or_null("/root/ocean/Player/xpbar")
 	if xpbar:
-		xpbar.xp += 4.0
+		xpbar.gain_xp(20.0)
 		xpbar.update_bar()
 	queue_free()
 func _ready() -> void:

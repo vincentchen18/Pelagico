@@ -27,6 +27,7 @@ func gain_xp(num: float):
 		player.regen_amt = regens[stage]
 		player.regen_delay = regens_delays[stage]
 		player.since_hit = 5.0 #immediately regen upon level up
+		max_xp = growth_thresholds[stage]
 	
 	update_bar()
 		
@@ -47,6 +48,7 @@ func _ready() -> void:
 	update_bar()
 func update_bar():
 	value = xp
+	max_value = max_xp
 	var t := float(xp) / max_xp
 	var fill := StyleBoxFlat.new()
 	fill.bg_color = Color("#FBC835") 
