@@ -1,9 +1,10 @@
 extends RichTextLabel
 @onready var startpos: Vector2 = global_position
-@export var dropdistance: int 
+@export var dropdistance: int
 @export var duration: float
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	dropdistance = 200
 	global_position.y -= dropdistance
 	_textanim()
 
