@@ -2,6 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://cuxpxuhrj7ygt" path="res://Assets/pelagicofont.png" id="1_lti8b"]
 [ext_resource type="Script" uid="uid://v00ufk8tdad4" path="res://Scripts/titletext.gd" id="2_ouk20"]
+[ext_resource type="Script" uid="uid://ftbahd27ipa0" path="res://Scripts/button.gd" id="3_mae5d"]
 
 [node name="Node2D" type="Node2D" unique_id=540743526]
 
@@ -28,3 +29,13 @@ script = ExtResource("2_ouk20")
 dropdistance = 500
 duration = 3.0
 metadata/_edit_group_ = true
+
+[node name="Button" type="Button" parent="." unique_id=1022661253]
+offset_left = -265.0
+offset_top = 52.0
+offset_right = 69.0
+offset_bottom = 149.0
+text = "start broski"
+script = ExtResource("3_mae5d")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
