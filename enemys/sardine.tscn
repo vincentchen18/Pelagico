@@ -37,7 +37,7 @@ shape = SubResource("RectangleShape2D_wad7g")
 [node name="health" type="ProgressBar" parent="." unique_id=1012203974]
 offset_right = 27.0
 offset_bottom = 4.0
-max_value = 40.0
+max_value = 20.0
 show_percentage = false
 script = ExtResource("3_jr67e")
 

@@ -17,7 +17,7 @@ func gain_xp(num: float):
 	xp += num
 	if xp >= growth_thresholds[stage]:
 		stage += 1
-		xp = 0
+		xp -= growth_thresholds[stage-1]
 		max_value = growth_thresholds[stage]
 		healthbar.max_health = health_bars[stage]
 		healthbar.update_bar()

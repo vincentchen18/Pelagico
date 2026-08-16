@@ -3,8 +3,8 @@ var dashing := false
 var dash_timer := 0.0
 var cooldown_timer := 0.0
 var dash_dir := Vector2.RIGHT
-var dash_hit_done := false
 var dash_hit_window := 0.0
+var dash_hit_list := []
 @export var speed := 235
 @export var dash_speed := speed*2
 @export var dash_time := 0.03
@@ -36,12 +36,17 @@ func _physics_process(delta):
 		healthbar.heal(healthbar.max_health * regen_amt * delta)
 	cooldown_timer = max(cooldown_timer - delta, 0.0)
 	dash_hit_window = max(dash_hit_window - delta, 0.0)
-	if dash_hit_window > 0.0 and not dash_hit_done:
-		for body in $DashHitbox.get_overlapping_bodies():
-			if body.is_in_group("enemy") and body.has_method("hit"):
-				body.hit(base_damage)
-				dash_hit_done = true
+	if dash_hit_window > 0.0:
+		var bodies = $DashHitbox.get_overlapping_bodies().filter(
+			func(b): return b.is_in_group("enemy") and b.has_method("hit") and not dash_hit_list.has(b))
+		bodies.sort_custom(func(a, b):
+			return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position))
+		for body in bodies:
+			var mult = max(1.0 - dash_hit_list.size() * 0.2, 0.0)
+			if mult <= 0.0:
 				break
+			body.hit(base_damage * mult)
+			dash_hit_list.append(body)
 	if dashing:
 		dash_timer -= delta
 		velocity = dash_dir * dash_speed
@@ -54,7 +59,7 @@ func _physics_process(delta):
 		dash_timer = dash_time
 		dash_hit_window = 0.2
 		cooldown_timer = dash_cooldown
-		dash_hit_done = false
+		dash_hit_list.clear()
 		dash_dir = Vector2.RIGHT.rotated(rotation)
 	var boosting: bool = false
 	# turning
