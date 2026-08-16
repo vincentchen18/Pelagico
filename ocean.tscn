@@ -88,6 +88,29 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_br8fx"]
 size = Vector2(10, 20)
 
+[sub_resource type="Gradient" id="Gradient_nrb0v"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_br8fx"]
+gradient = SubResource("Gradient_nrb0v")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="GDScript" id="GDScript_nrb0v"]
+script/source = "extends PointLight2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
 [node name="ocean" type="Node2D" unique_id=1002492690]
 script = ExtResource("1_06qne")
 
@@ -136,5 +159,12 @@ max_value = 50.0
 show_percentage = false
 script = ExtResource("8_v5bp3")
 
+[node name="PointLight2D" type="PointLight2D" parent="Player" unique_id=1716417385]
+texture = SubResource("GradientTexture2D_br8fx")
+script = SubResource("GDScript_nrb0v")
+
 [node name="spawnlayer" type="TileMapLayer" parent="." unique_id=1806730659]
 script = ExtResource("8_nrb0v")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=176792316]
+color = Color(0.078431375, 0.09803922, 0.14901961, 1)

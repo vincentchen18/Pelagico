@@ -19,11 +19,18 @@ var dash_hit_list := []
 @export var anim_speed := 0.5
 @export var regen_delay := 5.0
 @export var regen_amt := 0.08
+@export var shallow_scale := 50.0
+@export var deep_scale := 4.0
+@export var shallow_x := -16.0
+@export var deep_x := 384.0
+@export var shallow_speed_mult := 1.05
+@export var deep_speed_mult := 0.85
 var since_hit := 999.0
 var stamina: float = maxstamina
 @onready var sprite: Node2D = $Sprite2D
 @onready var healthbar: ProgressBar = $healthbar
 @onready var xpbar: ProgressBar = $xpbar
+@onready var light: PointLight2D = $PointLight2D
 var animtimer: float = 0.15
 func _physics_process(delta):
 	if healthbar.health <= 0.0:
@@ -34,6 +41,11 @@ func _physics_process(delta):
 	since_hit += delta
 	if since_hit >= regen_delay and healthbar.health < healthbar.max_health:
 		healthbar.heal(healthbar.max_health * regen_amt * delta)
+	var tx = global_position.x / 32.0
+	var lt = clamp((tx - shallow_x) / (deep_x - shallow_x), 0.0, 1.0)
+	var target_scale = lerp(shallow_scale, deep_scale, lt)
+	light.texture_scale = lerp(light.texture_scale, target_scale, delta * 3.0)
+	var speed_mult = lerp(shallow_speed_mult, deep_speed_mult, lt)
 	cooldown_timer = max(cooldown_timer - delta, 0.0)
 	dash_hit_window = max(dash_hit_window - delta, 0.0)
 	if dash_hit_window > 0.0:
@@ -49,7 +61,7 @@ func _physics_process(delta):
 			dash_hit_list.append(body)
 	if dashing:
 		dash_timer -= delta
-		velocity = dash_dir * dash_speed
+		velocity = dash_dir * dash_speed * speed_mult
 		move_and_slide()
 		if dash_timer <= 0.0:
 			dashing = false
@@ -77,13 +89,13 @@ func _physics_process(delta):
 		thrust -= 0.2
 	if thrust != 0:
 		animtimer = 0.15
-		velocity = velocity.lerp(forward * speed * thrust, acceleration * delta)
+		velocity = velocity.lerp(forward * speed * speed_mult * thrust, acceleration * delta)
 		animplaymult = max(velocity.length()/speed, 1)
 		$AnimatedSprite2D.speed_scale = animplaymult * anim_speed
 		$AnimatedSprite2D.play("swim")
 	elif turn != 0:
 		animtimer = 0.15
-		velocity = velocity.lerp(forward * rotforwardspeed, acceleration * delta * 0.6)
+		velocity = velocity.lerp(forward * rotforwardspeed * speed_mult, acceleration * delta * 0.6)
 		animplaymult = velocity.length() / speed
 		$AnimatedSprite2D.speed_scale = max(animplaymult, 0.4) * anim_speed
 		$AnimatedSprite2D.play("swim")
