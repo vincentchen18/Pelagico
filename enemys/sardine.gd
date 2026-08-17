@@ -16,7 +16,9 @@ extends CharacterBody2D
 @onready var player = get_node_or_null("/root/ocean/Player")
 
 @export var max_health := 20.0
-@export var damage := 0.0
+@export var damage := 5.0
+@export var hit_interval := 0.5
+var hit_cd := 0.0
 @export var regen_delay := 8.0
 @export var regen_amt := 0.1
 var since_hit := 999.0
@@ -55,7 +57,13 @@ func _physics_process(delta: float) -> void:
 	var target := _school_heading()
 	if flee_timer > 0.0:
 		target = flee_dir
-
+	hit_cd = max(hit_cd - delta, 0.0)
+	if hit_cd <= 0.0:
+		for body in $attackHitbox.get_overlapping_bodies():
+			if body.has_method("hit"):
+				body.hit(damage)
+				hit_cd = hit_interval
+				break
 	heading = heading.lerp(target, turn_rate * delta).normalized()
 
 	var spd := speed * (flee_mult if flee_timer > 0.0 else 1.0)

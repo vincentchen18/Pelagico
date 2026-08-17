@@ -103,7 +103,9 @@ func spawn_for_zone(cell: Vector2i, globalx: int, globaly: int) -> void:
 		2:
 			if cell_rng(globalx, globaly, 1).randf() < CRAB_CHANCE: spawn(CRAB, cell)
 			if cell_rng(globalx, globaly, 2).randf() < SARDINE_CHANCE: spawn_school(SARDINE, cell, globalx, globaly)
-		3, 4:
+		3:
+			if cell_rng(globalx, globaly, 2).randf() < SARDINE_CHANCE: spawn_school(SARDINE, cell, globalx, globaly)
+		4:
 			pass
 func spawn(scene: PackedScene, cell: Vector2i) -> void:
 	var inst = scene.instantiate()
