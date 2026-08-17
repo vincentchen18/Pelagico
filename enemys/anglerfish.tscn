@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://drj8smn6stqp4"]
+
+[ext_resource type="Script" uid="uid://dodsmwjsrevgp" path="res://enemys/anglerfish.gd" id="1_3n1vd"]
+[ext_resource type="Texture2D" uid="uid://dbn0othnomtr5" path="res://Assets/anglerfish.png" id="1_dj11o"]
+[ext_resource type="Script" uid="uid://dv0tsc8q1rh1d" path="res://enemys/anglerhealth.gd" id="3_3n1vd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_br8fx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dj11o")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wad7g"]
+size = Vector2(24, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_br8fx"]
+size = Vector2(26, 26)
+
+[node name="sardine" type="CharacterBody2D" unique_id=522453425]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_3n1vd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1827616383]
+rotation = 3.1415927
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_br8fx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1405066182]
+shape = SubResource("RectangleShape2D_wad7g")
+
+[node name="health" type="ProgressBar" parent="." unique_id=1012203974]
+offset_right = 27.0
+offset_bottom = 4.0
+max_value = 20.0
+show_percentage = false
+script = ExtResource("3_3n1vd")
+
+[node name="attackHitbox" type="Area2D" parent="." unique_id=33987728]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attackHitbox" unique_id=1696018257]
+shape = SubResource("RectangleShape2D_br8fx")
+
+[connection signal="body_entered" from="attackHitbox" to="." method="_on_attack_hitbox_body_entered"]

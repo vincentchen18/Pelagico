@@ -3,6 +3,8 @@ const sourceid = 0
 var walltilepos = Vector2i(1,2)
 const CRAB = preload("res://enemys/crab.tscn")
 const SARDINE = preload("res://enemys/sardine.tscn")
+const ANGLERFISH = preload("res://enemys/anglerfish.tscn")
+
 const CRAB_CHANCE = 0.05
 const SARDINE_CHANCE = 0.04
 var worldmap: Dictionary = {}
@@ -12,6 +14,7 @@ var oceantilespos = Vector2i(0, 1)
 var world_seed := 0
 @export var player: Node2D
 @export var unload_dist := 4
+
 func _ready() -> void:
 	world_seed = randi()   # hardcode a fixed int here for a reproducible world
 	noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
@@ -99,6 +102,7 @@ func spawn_for_zone(cell: Vector2i, globalx: int, globaly: int) -> void:
 		0:
 			pass
 		1:
+			if 1 == 1: spawn(ANGLERFISH, cell)
 			if cell_rng(globalx, globaly, 1).randf() < CRAB_CHANCE: spawn(CRAB, cell)
 		2:
 			if cell_rng(globalx, globaly, 1).randf() < CRAB_CHANCE: spawn(CRAB, cell)
