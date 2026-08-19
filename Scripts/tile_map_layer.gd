@@ -7,6 +7,7 @@ const ANGLERFISH = preload("res://enemys/anglerfish.tscn")
 
 const CRAB_CHANCE = 0.05
 const SARDINE_CHANCE = 0.04
+const ANGLERFISH_CHANCE = 0.05
 var worldmap: Dictionary = {}
 var noise = FastNoiseLite.new()
 var depthnoise = FastNoiseLite.new()
@@ -102,13 +103,13 @@ func spawn_for_zone(cell: Vector2i, globalx: int, globaly: int) -> void:
 		0:
 			pass
 		1:
-			if 1 == 1: spawn(ANGLERFISH, cell)
 			if cell_rng(globalx, globaly, 1).randf() < CRAB_CHANCE: spawn(CRAB, cell)
 		2:
 			if cell_rng(globalx, globaly, 1).randf() < CRAB_CHANCE: spawn(CRAB, cell)
 			if cell_rng(globalx, globaly, 2).randf() < SARDINE_CHANCE: spawn_school(SARDINE, cell, globalx, globaly)
 		3:
 			if cell_rng(globalx, globaly, 2).randf() < SARDINE_CHANCE: spawn_school(SARDINE, cell, globalx, globaly)
+			if cell_rng(globalx, globaly, 2).randf() < ANGLERFISH_CHANCE: spawn(ANGLERFISH, cell)
 		4:
 			pass
 func spawn(scene: PackedScene, cell: Vector2i) -> void:

@@ -1,8 +1,8 @@
 extends CharacterBody2D
 @export var speed := 50.0
 @export var scale_mult := 1.0
-@export var min_zone := 1
-@export var max_zone := 2
+@export var min_zone := 2
+@export var max_zone := 3
 @export var school_radius := 90.0
 @export var separation_dist := 24.0
 @export var turn_rate := 2.0

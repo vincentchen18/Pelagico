@@ -21,7 +21,17 @@ size = Vector2(24, 24)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_br8fx"]
 size = Vector2(26, 26)
 
-[node name="sardine" type="CharacterBody2D" unique_id=522453425]
+[sub_resource type="Gradient" id="Gradient_3n1vd"]
+offsets = PackedFloat32Array(0, 0.012048192, 0.560241)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_br8fx"]
+gradient = SubResource("Gradient_3n1vd")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="anglerfish" type="CharacterBody2D" unique_id=522453425]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_3n1vd")
@@ -37,7 +47,7 @@ shape = SubResource("RectangleShape2D_wad7g")
 [node name="health" type="ProgressBar" parent="." unique_id=1012203974]
 offset_right = 27.0
 offset_bottom = 4.0
-max_value = 20.0
+max_value = 200.0
 show_percentage = false
 script = ExtResource("3_3n1vd")
 
@@ -46,5 +56,9 @@ collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackHitbox" unique_id=1696018257]
 shape = SubResource("RectangleShape2D_br8fx")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1812627371]
+position = Vector2(29, 3)
+texture = SubResource("GradientTexture2D_br8fx")
 
 [connection signal="body_entered" from="attackHitbox" to="." method="_on_attack_hitbox_body_entered"]
