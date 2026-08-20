@@ -9,7 +9,7 @@ const SHARK = preload("res://enemys/shark.tscn")
 const CRAB_CHANCE = 0.05
 const SARDINE_CHANCE = 0.04
 const ANGLERFISH_CHANCE = 0.05
-const SHARK_CHANCE = 0.1
+const SHARK_CHANCE = 0.15
 var worldmap: Dictionary = {}
 var noise = FastNoiseLite.new()
 var depthnoise = FastNoiseLite.new()
@@ -106,14 +106,16 @@ func spawn_for_zone(cell: Vector2i, globalx: int, globaly: int) -> void:
 			pass
 		1:
 			if cell_rng(globalx, globaly, 1).randf() < CRAB_CHANCE: spawn(CRAB, cell)
-			if cell_rng(globalx, globaly, 1).randf() < SHARK_CHANCE: spawn(SHARK, cell)
 		2:
 			if cell_rng(globalx, globaly, 1).randf() < CRAB_CHANCE: spawn(CRAB, cell)
 			if cell_rng(globalx, globaly, 2).randf() < SARDINE_CHANCE: spawn_school(SARDINE, cell, globalx, globaly)
 		3:
 			if cell_rng(globalx, globaly, 2).randf() < SARDINE_CHANCE: spawn_school(SARDINE, cell, globalx, globaly)
 			if cell_rng(globalx, globaly, 2).randf() < ANGLERFISH_CHANCE: spawn(ANGLERFISH, cell)
+			if cell_rng(globalx, globaly, 1).randf() < SHARK_CHANCE/1.5: spawn(SHARK, cell)
 		4:
+			if cell_rng(globalx, globaly, 1).randf() < SHARK_CHANCE: spawn(SHARK, cell)
+
 			pass
 func spawn(scene: PackedScene, cell: Vector2i) -> void:
 	var inst = scene.instantiate()
