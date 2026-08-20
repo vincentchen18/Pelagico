@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dodsmwjsrevgp" path="res://enemys/anglerfish.gd" id="1_3n1vd"]
 [ext_resource type="Texture2D" uid="uid://dbn0othnomtr5" path="res://Assets/anglerfish.png" id="1_dj11o"]
 [ext_resource type="Script" uid="uid://dv0tsc8q1rh1d" path="res://enemys/anglerhealth.gd" id="3_3n1vd"]
+[ext_resource type="Script" uid="uid://du10ej4dodubd" path="res://enemys/anglerfishlight.gd" id="4_g1mv2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_br8fx"]
 animations = [{
@@ -60,5 +61,6 @@ shape = SubResource("RectangleShape2D_br8fx")
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1812627371]
 position = Vector2(29, 3)
 texture = SubResource("GradientTexture2D_br8fx")
+script = ExtResource("4_g1mv2")
 
 [connection signal="body_entered" from="attackHitbox" to="." method="_on_attack_hitbox_body_entered"]

@@ -72,6 +72,6 @@ func _zone_ahead() -> int:
 func die():
 	var xpbar = get_node_or_null("/root/ocean/Player/xpbar")
 	if xpbar:
-		xpbar.gain_xp(2.0)
+		xpbar.gain_xp(50.0)
 		xpbar.update_bar()
 	queue_free()

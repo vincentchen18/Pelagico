@@ -14,7 +14,7 @@ var depthnoise = FastNoiseLite.new()
 var oceantilespos = Vector2i(0, 1)
 var world_seed := 0
 @export var player: Node2D
-@export var unload_dist := 4
+@export var unload_dist := 3
 
 func _ready() -> void:
 	world_seed = randi()   # hardcode a fixed int here for a reproducible world
