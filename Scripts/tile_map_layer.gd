@@ -4,10 +4,12 @@ var walltilepos = Vector2i(1,2)
 const CRAB = preload("res://enemys/crab.tscn")
 const SARDINE = preload("res://enemys/sardine.tscn")
 const ANGLERFISH = preload("res://enemys/anglerfish.tscn")
+const SHARK = preload("res://enemys/shark.tscn")
 
 const CRAB_CHANCE = 0.05
 const SARDINE_CHANCE = 0.04
 const ANGLERFISH_CHANCE = 0.05
+const SHARK_CHANCE = 0.1
 var worldmap: Dictionary = {}
 var noise = FastNoiseLite.new()
 var depthnoise = FastNoiseLite.new()
@@ -104,6 +106,7 @@ func spawn_for_zone(cell: Vector2i, globalx: int, globaly: int) -> void:
 			pass
 		1:
 			if cell_rng(globalx, globaly, 1).randf() < CRAB_CHANCE: spawn(CRAB, cell)
+			if cell_rng(globalx, globaly, 1).randf() < SHARK_CHANCE: spawn(SHARK, cell)
 		2:
 			if cell_rng(globalx, globaly, 1).randf() < CRAB_CHANCE: spawn(CRAB, cell)
 			if cell_rng(globalx, globaly, 2).randf() < SARDINE_CHANCE: spawn_school(SARDINE, cell, globalx, globaly)

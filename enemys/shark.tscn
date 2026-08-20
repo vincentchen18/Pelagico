@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://dnaomfkodknan"]
+
+[ext_resource type="Script" uid="uid://faa7nbo2tduh" path="res://enemys/shark.gd" id="1_w6u8s"]
+[ext_resource type="Texture2D" uid="uid://4wh0rgyjyprt" path="res://Assets/shark.png" id="2_w6u8s"]
+[ext_resource type="Script" uid="uid://cpby5mq53xrh6" path="res://enemys/sharkhealth.gd" id="3_w6u8s"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_br8fx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_w6u8s")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wad7g"]
+size = Vector2(43, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_br8fx"]
+size = Vector2(43, 10)
+
+[node name="shark" type="CharacterBody2D" unique_id=522453425]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_w6u8s")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1827616383]
+position = Vector2(1.9999999, -12)
+rotation = 3.1415927
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_br8fx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1405066182]
+position = Vector2(-1.5, 0)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_wad7g")
+
+[node name="health" type="ProgressBar" parent="." unique_id=1012203974]
+offset_right = 27.0
+offset_bottom = 4.0
+max_value = 200.0
+show_percentage = false
+script = ExtResource("3_w6u8s")
+
+[node name="attackHitbox" type="Area2D" parent="." unique_id=33987728]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attackHitbox" unique_id=1696018257]
+position = Vector2(-1.5, 0)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_br8fx")
+
+[connection signal="body_entered" from="attackHitbox" to="." method="_on_attack_hitbox_body_entered"]
