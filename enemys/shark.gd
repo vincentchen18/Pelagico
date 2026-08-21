@@ -1,7 +1,7 @@
 extends CharacterBody2D
 @export var speed := 215.0
 @export var scale_mult := 1.0
-@export var min_zone := 1
+@export var min_zone := 2
 @export var max_zone := 4
 @export var vision_cone := 45.0
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D

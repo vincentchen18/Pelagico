@@ -1,7 +1,7 @@
 extends CharacterBody2D
 @export var speed := 192.0
 @export var scale_mult := 1.0
-@export var min_zone := 3
+@export var min_zone := 2
 @export var max_zone := 4
 @export var vision_cone := 45.0
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -9,7 +9,7 @@ extends CharacterBody2D
 @onready var terrain = get_node("/root/ocean/TileMapLayer")
 @onready var player = get_node_or_null("/root/ocean/Player")
 @export var max_health := 200.0
-@export var damage := 50.0
+@export var damage := 30.0
 @export var hit_interval := 2.0
 var hit_cd := 0.0
 @export var regen_delay := 8.0

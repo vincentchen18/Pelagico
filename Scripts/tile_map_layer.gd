@@ -16,7 +16,7 @@ var depthnoise = FastNoiseLite.new()
 var oceantilespos = Vector2i(0, 1)
 var world_seed := 0
 @export var player: Node2D
-@export var unload_dist := 3
+@export var unload_dist := 2
 
 func _ready() -> void:
 	world_seed = randi()   # hardcode a fixed int here for a reproducible world
@@ -112,7 +112,7 @@ func spawn_for_zone(cell: Vector2i, globalx: int, globaly: int) -> void:
 		3:
 			if cell_rng(globalx, globaly, 2).randf() < SARDINE_CHANCE: spawn_school(SARDINE, cell, globalx, globaly)
 			if cell_rng(globalx, globaly, 2).randf() < ANGLERFISH_CHANCE: spawn(ANGLERFISH, cell)
-			if cell_rng(globalx, globaly, 1).randf() < SHARK_CHANCE/1.5: spawn(SHARK, cell)
+			if cell_rng(globalx, globaly, 1).randf() < SHARK_CHANCE/40: spawn(SHARK, cell) # rare sharks in this zone
 		4:
 			if cell_rng(globalx, globaly, 1).randf() < SHARK_CHANCE: spawn(SHARK, cell)
 
