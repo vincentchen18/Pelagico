@@ -1,6 +1,6 @@
 extends ProgressBar
 
-var max_health := 100.0
+var max_health := 20000.0
 var health := max_health
 
 func take_damage(amount):

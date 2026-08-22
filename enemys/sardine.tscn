@@ -16,10 +16,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wad7g"]
-size = Vector2(24, 24)
+size = Vector2(40, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_br8fx"]
-size = Vector2(26, 26)
+size = Vector2(40, 10)
 
 [node name="sardine" type="CharacterBody2D" unique_id=522453425]
 collision_layer = 4
@@ -32,6 +32,7 @@ scale = Vector2(0.05, 0.05)
 sprite_frames = SubResource("SpriteFrames_br8fx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1405066182]
+position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_wad7g")
 
 [node name="health" type="ProgressBar" parent="." unique_id=1012203974]
@@ -45,6 +46,7 @@ script = ExtResource("3_jr67e")
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackHitbox" unique_id=1696018257]
+position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_br8fx")
 
 [connection signal="body_entered" from="attackHitbox" to="." method="_on_attack_hitbox_body_entered"]

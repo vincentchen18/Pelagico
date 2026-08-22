@@ -33,7 +33,6 @@ func _physics_process(delta: float) -> void:
 	since_hit += delta
 	if since_hit >= regen_delay and healthbar.health < healthbar.max_health:
 		healthbar.heal(healthbar.max_health * regen_amt * delta)
-
 	hit_cd = max(hit_cd - delta, 0.0)
 	if hit_cd <= 0.0:
 		for body in $attackHitbox.get_overlapping_bodies():
@@ -41,25 +40,26 @@ func _physics_process(delta: float) -> void:
 				body.hit(damage)
 				hit_cd = hit_interval
 				break
-
 	var target := heading
-	var fleeing := false
 	if player:
-		var to_angler: Vector2 = (global_position - player.global_position).normalized()
-		var player_facing := Vector2.RIGHT.rotated(player.rotation)
-		target = -to_angler       # always give chase
-
-	heading = heading.lerp(target, turn_rate_for(fleeing) * delta).normalized()
+		var to_shark: Vector2 = (global_position - player.global_position).normalized()
+		target = -to_shark        # always give chase
+	heading = heading.lerp(target, turn_rate_for(false) * delta).normalized()
 	var spd := speed
 	velocity = heading * spd
 	move_and_slide()
-
-	if is_on_wall() or _zone_ahead() < min_zone or _zone_ahead() > max_zone:
+	var bounced := false
+	if _zone_ahead() < min_zone or _zone_ahead() > max_zone:
+		bounced = true
+	elif is_on_wall():
+		var col = get_last_slide_collision()
+		if col and not col.get_collider().is_in_group("player"):
+			bounced = true
+	if bounced:
 		heading = -heading
-
 	rotation = heading.angle()
 	sprite.flip_v = absf(heading.angle()) > PI / 2
-func turn_rate_for(fleeing: bool) -> float:
+func turn_rate_for(_fleeing: bool) -> float:
 	return 3.5
 func _zone_ahead() -> int:
 	var ahead = global_position + heading * 24.0
@@ -68,6 +68,6 @@ func _zone_ahead() -> int:
 func die():
 	var xpbar = get_node_or_null("/root/ocean/Player/xpbar")
 	if xpbar:
-		xpbar.gain_xp(150.0)
+		xpbar.gain_xp(350.0)
 		xpbar.update_bar()
 	queue_free()

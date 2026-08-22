@@ -3,8 +3,8 @@ extends Button
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	get_node("../Credits").visible = false
-	get_node("../close credits").visible = false
+	get_node("../Instructions").visible = false
+	get_node("../close instructions").visible = false
 
 
 
@@ -14,5 +14,5 @@ func _process(delta: float) -> void:
 
 
 func _on_pressed() -> void:
-	get_node("../Credits").visible = true
-	get_node("../close credits").visible = true
+	get_node("../Instructions").visible = false
+	get_node("../close instructions").visible = false

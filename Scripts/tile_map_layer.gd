@@ -114,7 +114,8 @@ func spawn_for_zone(cell: Vector2i, globalx: int, globaly: int) -> void:
 			if cell_rng(globalx, globaly, 2).randf() < ANGLERFISH_CHANCE: spawn(ANGLERFISH, cell)
 			if cell_rng(globalx, globaly, 1).randf() < SHARK_CHANCE/40: spawn(SHARK, cell) # rare sharks in this zone
 		4:
-			if cell_rng(globalx, globaly, 1).randf() < SHARK_CHANCE: spawn(SHARK, cell)
+			if cell_rng(globalx, globaly, 2).randf() < ANGLERFISH_CHANCE*1.5: spawn(ANGLERFISH, cell)
+			if cell_rng(globalx, globaly, 1).randf() < SHARK_CHANCE/10: spawn(SHARK, cell)
 
 			pass
 func spawn(scene: PackedScene, cell: Vector2i) -> void:

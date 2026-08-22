@@ -4,6 +4,9 @@
 [ext_resource type="Script" uid="uid://v00ufk8tdad4" path="res://Scripts/titletext.gd" id="2_ouk20"]
 [ext_resource type="Script" uid="uid://ftbahd27ipa0" path="res://Scripts/button.gd" id="3_mae5d"]
 [ext_resource type="Script" uid="uid://c8acpx01um2hk" path="res://creditsbutton.gd" id="4_4hy44"]
+[ext_resource type="Script" uid="uid://d4fimb2eoxgt" path="res://instructionsbutton.gd" id="4_ecwwl"]
+[ext_resource type="Script" uid="uid://ci4a1l6k6ub4i" path="res://close_credits.gd" id="5_ytr4m"]
+[ext_resource type="Script" uid="uid://dhqewb1en26x" path="res://close_instructions.gd" id="6_l48gv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mae5d"]
 bg_color = Color(0.22803542, 0.7504563, 0.6161048, 1)
@@ -50,7 +53,7 @@ offset_right = 13.0
 offset_bottom = 113.0
 theme_override_font_sizes/font_size = 32
 text = "Instructions"
-script = ExtResource("3_mae5d")
+script = ExtResource("4_ecwwl")
 
 [node name="Button3" type="Button" parent="." unique_id=875274041]
 offset_left = -221.0
@@ -62,6 +65,7 @@ text = "Credits"
 script = ExtResource("4_4hy44")
 
 [node name="Credits" type="Label" parent="." unique_id=2108325914]
+visible = false
 offset_left = -550.0
 offset_top = -272.0
 offset_right = 309.0
@@ -78,6 +82,45 @@ Jayden - color of the credits screen
 "
 horizontal_alignment = 1
 
+[node name="Instructions" type="Label" parent="." unique_id=214799704]
+offset_left = -550.0
+offset_top = -272.0
+offset_right = 309.0
+offset_bottom = 239.0
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("StyleBoxFlat_mae5d")
+text = "Controls:
+W/Up arrow: move forward
+S/Down arrow: move backward
+A/Left arrow: turn left
+S/Right arrow: turn right
+F to dash/attack
+The green bar is your health.
+Kill animals to gain XP (yellow bar) to level up!
+Good luck."
+horizontal_alignment = 1
+
+[node name="close credits" type="Button" parent="." unique_id=1168634925]
+visible = false
+offset_left = 250.0
+offset_top = -272.0
+offset_right = 310.0
+offset_bottom = -219.0
+theme_override_font_sizes/font_size = 32
+text = "X"
+script = ExtResource("5_ytr4m")
+
+[node name="close instructions" type="Button" parent="." unique_id=1120094183]
+offset_left = 249.0
+offset_top = -272.0
+offset_right = 309.0
+offset_bottom = -219.0
+theme_override_font_sizes/font_size = 32
+text = "X"
+script = ExtResource("6_l48gv")
+
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
 [connection signal="pressed" from="Button2" to="Button2" method="_on_pressed"]
 [connection signal="pressed" from="Button3" to="Button3" method="_on_pressed"]
+[connection signal="pressed" from="close credits" to="close credits" method="_on_pressed"]
+[connection signal="pressed" from="close instructions" to="close instructions" method="_on_pressed"]

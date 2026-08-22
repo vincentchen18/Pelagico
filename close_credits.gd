@@ -14,5 +14,5 @@ func _process(delta: float) -> void:
 
 
 func _on_pressed() -> void:
-	get_node("../Credits").visible = true
-	get_node("../close credits").visible = true
+	get_node("../Credits").visible = false
+	get_node("../close credits").visible = false

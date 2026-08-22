@@ -16,9 +16,12 @@ var hit_cd := 0.0
 @export var regen_amt := 0.1
 var since_hit := 999.0
 var heading := Vector2.RIGHT
+var hostile := false
+var provoked := false
 func hit(amount):
 	healthbar.take_damage(amount)
 	since_hit = 0.0
+	provoked = true
 	if healthbar.health <= 0:
 		die()
 func _ready() -> void:
@@ -29,11 +32,11 @@ func _ready() -> void:
 	add_to_group("enemy")
 	add_to_group("anglerfish")
 	heading = Vector2.RIGHT.rotated(randf_range(0, TAU))
+	hostile = randf() < 0.7
 func _physics_process(delta: float) -> void:
 	since_hit += delta
 	if since_hit >= regen_delay and healthbar.health < healthbar.max_health:
 		healthbar.heal(healthbar.max_health * regen_amt * delta)
-
 	hit_cd = max(hit_cd - delta, 0.0)
 	if hit_cd <= 0.0:
 		for body in $attackHitbox.get_overlapping_bodies():
@@ -41,28 +44,39 @@ func _physics_process(delta: float) -> void:
 				body.hit(damage)
 				hit_cd = hit_interval
 				break
-
 	var target := heading
 	var fleeing := false
 	if player:
 		var to_angler: Vector2 = (global_position - player.global_position).normalized()
-		var player_facing := Vector2.RIGHT.rotated(player.rotation)
-		if player_facing.dot(to_angler) > cos(deg_to_rad(vision_cone)):
+		var scared: bool = (healthbar.health / max_health) < (_player_health() / _player_max_health()) / 1.5
+		if scared:
 			target = to_angler        # flee
 			fleeing = true
-		else:
-			target = -to_angler       # hunt
-
+		elif hostile or provoked:
+			target = -to_angler       # chase
 	heading = heading.lerp(target, turn_rate_for(fleeing) * delta).normalized()
 	var spd := speed
 	velocity = heading * spd
 	move_and_slide()
-
-	if is_on_wall() or _zone_ahead() < min_zone or _zone_ahead() > max_zone:
+	var bounced := false
+	if _zone_ahead() < min_zone or _zone_ahead() > max_zone:
+		bounced = true
+	elif is_on_wall():
+		var col = get_last_slide_collision()
+		if col and not col.get_collider().is_in_group("player"):
+			bounced = true
+	if bounced:
 		heading = -heading
-
 	rotation = heading.angle()
 	sprite.flip_v = absf(heading.angle()) > PI / 2
+func _player_health() -> float:
+	if player and player.has_node("healthbar"):
+		return player.get_node("healthbar").health
+	return 100.0
+func _player_max_health() -> float:
+	if player and player.has_node("healthbar"):
+		return player.get_node("healthbar").max_health
+	return 100.0
 func turn_rate_for(fleeing: bool) -> float:
 	return 3.0 if fleeing else 2.0
 func _zone_ahead() -> int:
@@ -72,6 +86,6 @@ func _zone_ahead() -> int:
 func die():
 	var xpbar = get_node_or_null("/root/ocean/Player/xpbar")
 	if xpbar:
-		xpbar.gain_xp(50.0)
+		xpbar.gain_xp(75.0)
 		xpbar.update_bar()
 	queue_free()
