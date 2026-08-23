@@ -38,7 +38,7 @@ collision_mask = 3
 script = ExtResource("1_3n1vd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1827616383]
-position = Vector2(-2.1316282e-14, -2.9999995)
+position = Vector2(0, 5.9604645e-08)
 rotation = 3.1415927
 scale = Vector2(0.05, 0.05)
 sprite_frames = SubResource("SpriteFrames_br8fx")

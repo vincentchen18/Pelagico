@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://ti1732mr5wja"]
+
+[ext_resource type="Texture2D" uid="uid://ovffiklb8bp8" path="res://Assets/ball_of_clam.png" id="1_lrad6"]
+[ext_resource type="Script" uid="uid://c6lbr5vxb1eod" path="res://enemys/scallopshots.gd" id="1_nb660"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rcvx4"]
+radius = 6.0
+
+[node name="scallopshots" type="Area2D" unique_id=313786952]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_nb660")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=428176220]
+position = Vector2(-0.175, 0.27499977)
+scale = Vector2(0.019523809, 0.018186813)
+texture = ExtResource("1_lrad6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2122855658]
+shape = SubResource("CircleShape2D_rcvx4")

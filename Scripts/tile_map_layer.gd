@@ -5,11 +5,18 @@ const CRAB = preload("res://enemys/crab.tscn")
 const SARDINE = preload("res://enemys/sardine.tscn")
 const ANGLERFISH = preload("res://enemys/anglerfish.tscn")
 const SHARK = preload("res://enemys/shark.tscn")
+const SCALLOP = preload("res://enemys/scallop.tscn")
 
 const CRAB_CHANCE = 0.05
 const SARDINE_CHANCE = 0.04
 const ANGLERFISH_CHANCE = 0.05
 const SHARK_CHANCE = 0.15
+const SCALLOP_CHANCE = 0.04
+
+const BOSS_CELL := Vector2i(404, 0)
+const ARENA_RADIUS := 18
+const WALL_START := 428
+
 var worldmap: Dictionary = {}
 var noise = FastNoiseLite.new()
 var depthnoise = FastNoiseLite.new()
@@ -19,7 +26,7 @@ var world_seed := 0
 @export var unload_dist := 2
 
 func _ready() -> void:
-	world_seed = randi()   # hardcode a fixed int here for a reproducible world
+	world_seed = randi()
 	noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
 	noise.seed = world_seed
 	noise.frequency = 0.12
@@ -56,18 +63,18 @@ func cell_rng(gx: int, gy: int, salt: int) -> RandomNumberGenerator:
 func zone_index(globalx: int, globaly: int) -> int:
 	var wobble = depthnoise.get_noise_1d(globaly) * 6.0
 	var wx = globalx + wobble
-	if wx > 384:   return 4   # abyssal (cx > 48)
-	elif wx > 192: return 3   # midnight (cx > 24)
-	elif wx > 64:  return 2   # twilight (cx > 8)
-	elif wx > -16: return 1   # shallow (cx > -2)
-	else:          return 0   # sand/beach
+	if wx > 384:   return 4
+	elif wx > 192: return 3
+	elif wx > 64:  return 2
+	elif wx > -16: return 1
+	else:          return 0
 func zone_tiles(globalx: int, globaly: int) -> Array:
 	match zone_index(globalx, globaly):
-		4: return [Vector2i(1,1), Vector2i(1,3)] # abyssal
-		3: return [Vector2i(0,3), Vector2i(1,3)] # midnight
-		2: return [Vector2i(0,2), Vector2i(1,2)] # twilight
-		1: return [Vector2i(0,1), Vector2i(1,2)] # shallow
-		_: return [Vector2i(0,0), Vector2i(0,0)] # beach
+		4: return [Vector2i(1,1), Vector2i(1,3)]
+		3: return [Vector2i(0,3), Vector2i(1,3)]
+		2: return [Vector2i(0,2), Vector2i(1,2)]
+		1: return [Vector2i(0,1), Vector2i(1,2)]
+		_: return [Vector2i(0,0), Vector2i(0,0)]
 func gen_chunk(cx, cy) -> void:
 	var chunkkey = Vector2i(cx, cy)
 	var tilepos: Vector2i = Vector2i.ZERO
@@ -83,6 +90,15 @@ func gen_chunk(cx, cy) -> void:
 			var zt = zone_tiles(globalx, globaly)
 			oceantilespos = zt[0]
 			walltilepos = zt[1]
+			var dist_to_boss = Vector2(globalx, globaly).distance_to(Vector2(BOSS_CELL))
+			if globalx > WALL_START:
+				currentlis.append("x")
+				set_cell(Vector2i(globalx, globaly), sourceid, walltilepos, 0)
+				continue
+			elif dist_to_boss < ARENA_RADIUS:
+				currentlis.append("o")
+				set_cell(Vector2i(globalx, globaly), sourceid, oceantilespos, 0)
+				continue
 			var noisevalue = noise.get_noise_2d(globalx, globaly)
 			if noisevalue > 0.45:
 				currentlis.append("x")
@@ -106,18 +122,18 @@ func spawn_for_zone(cell: Vector2i, globalx: int, globaly: int) -> void:
 			pass
 		1:
 			if cell_rng(globalx, globaly, 1).randf() < CRAB_CHANCE: spawn(CRAB, cell)
+			if cell_rng(globalx, globaly, 4).randf() < SCALLOP_CHANCE: spawn(SCALLOP, cell)
 		2:
 			if cell_rng(globalx, globaly, 1).randf() < CRAB_CHANCE: spawn(CRAB, cell)
+			if cell_rng(globalx, globaly, 4).randf() < SCALLOP_CHANCE: spawn(SCALLOP, cell)
 			if cell_rng(globalx, globaly, 2).randf() < SARDINE_CHANCE: spawn_school(SARDINE, cell, globalx, globaly)
 		3:
 			if cell_rng(globalx, globaly, 2).randf() < SARDINE_CHANCE: spawn_school(SARDINE, cell, globalx, globaly)
 			if cell_rng(globalx, globaly, 2).randf() < ANGLERFISH_CHANCE: spawn(ANGLERFISH, cell)
-			if cell_rng(globalx, globaly, 1).randf() < SHARK_CHANCE/40: spawn(SHARK, cell) # rare sharks in this zone
+			if cell_rng(globalx, globaly, 1).randf() < SHARK_CHANCE/40: spawn(SHARK, cell)
 		4:
 			if cell_rng(globalx, globaly, 2).randf() < ANGLERFISH_CHANCE*1.5: spawn(ANGLERFISH, cell)
 			if cell_rng(globalx, globaly, 1).randf() < SHARK_CHANCE/10: spawn(SHARK, cell)
-
-			pass
 func spawn(scene: PackedScene, cell: Vector2i) -> void:
 	var inst = scene.instantiate()
 	get_parent().add_child(inst)
