@@ -10,7 +10,7 @@ extends CharacterBody2D
 @onready var player = get_node_or_null("/root/ocean/Player")
 @export var max_health := 400.0
 @export var damage := 80.0
-@export var hit_interval := 2.0
+@export var hit_interval := 1.0
 var hit_cd := 0.0
 @export var regen_delay := 10.0
 @export var regen_amt := 0.03
@@ -48,15 +48,16 @@ func _physics_process(delta: float) -> void:
 	var spd := speed
 	velocity = heading * spd
 	move_and_slide()
-	var bounced := false
 	if _zone_ahead() < min_zone or _zone_ahead() > max_zone:
-		bounced = true
+		heading = -heading
 	elif is_on_wall():
 		var col = get_last_slide_collision()
-		if col and not col.get_collider().is_in_group("player"):
-			bounced = true
-	if bounced:
-		heading = -heading
+		if col:
+			var other = col.get_collider()
+			if other is TileMapLayer or other.is_in_group("terrain"):
+				var normal = col.get_normal()
+				if heading.dot(normal) < 0:
+					heading = heading.bounce(normal)
 	rotation = heading.angle()
 	sprite.flip_v = absf(heading.angle()) > PI / 2
 func turn_rate_for(_fleeing: bool) -> float:

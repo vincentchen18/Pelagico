@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://doic7q671l7po"]
+[gd_scene format=3 uid="uid://doic7q671l7po"]
 
 [ext_resource type="Script" uid="uid://dorlqcmmxtk38" path="res://Scripts/ocean.gd" id="1_06qne"]
 [ext_resource type="Script" uid="uid://cf2cchhw3svwq" path="res://Scripts/tile_map_layer.gd" id="2_bwgqs"]
@@ -9,6 +9,16 @@
 [ext_resource type="Texture2D" uid="uid://oexgm3bwt4ku" path="res://Assets/Fish1spritesheet.png" id="6_n3fli"]
 [ext_resource type="Script" uid="uid://cdrqpsuklvint" path="res://Scripts/spawnlayer.gd" id="8_nrb0v"]
 [ext_resource type="Script" uid="uid://8xhvh7pfihdr" path="res://Scripts/xpbar.gd" id="8_v5bp3"]
+[ext_resource type="Texture2D" uid="uid://bpgx0espc26s2" path="res://Assets/levelup/levelup-1.png.png" id="9_kfour"]
+[ext_resource type="Texture2D" uid="uid://dkuxq0vleqygh" path="res://Assets/levelup/levelup-2.png.png" id="10_7120d"]
+[ext_resource type="Texture2D" uid="uid://qjsmq1v4gtdg" path="res://Assets/levelup/levelup-3.png.png" id="11_k7sri"]
+[ext_resource type="Texture2D" uid="uid://266smxft4cy" path="res://Assets/levelup/levelup-4.png.png" id="12_ykq71"]
+[ext_resource type="Texture2D" uid="uid://db6nletwts7gk" path="res://Assets/levelup/levelup-5.png.png" id="13_gvirt"]
+[ext_resource type="Texture2D" uid="uid://dnctba8k1w6" path="res://Assets/levelup/levelup-6.png.png" id="14_lghcm"]
+[ext_resource type="Texture2D" uid="uid://lftpik7uqxvf" path="res://Assets/levelup/levelup-7.png.png" id="15_ayk8t"]
+[ext_resource type="Texture2D" uid="uid://d3ddld6fihftu" path="res://Assets/levelup/levelup-8.png.png" id="16_duqj3"]
+[ext_resource type="Texture2D" uid="uid://c3wle2ltmcskk" path="res://Assets/levelup/levelup-9.png.png" id="17_v4vv0"]
+[ext_resource type="Texture2D" uid="uid://dxo5qi8rcl2jx" path="res://Assets/levelup/levelup-10.png.png" id="18_xiarv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v5bp3"]
 texture = ExtResource("2_nrb0v")
@@ -111,11 +121,48 @@ func _process(delta: float) -> void:
 	pass
 "
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_br8fx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_kfour")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_7120d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_k7sri")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ykq71")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_gvirt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_lghcm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_ayk8t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_duqj3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_v4vv0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_xiarv")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 3.0
+}]
+
 [node name="ocean" type="Node2D" unique_id=1002492690]
 script = ExtResource("1_06qne")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1167289651 node_paths=PackedStringArray("player")]
-tile_map_data = PackedByteArray("AAD+/wEAAAAAAAEAAAD//wEAAAAAAAEAAAAAAAEAAAAAAAEAAAABAAEAAAAAAAEAAAACAAIAAAAAAAEAAAADAAEAAAAAAAEAAAACAAEAAAAAAAEAAAABAAIAAAAAAAEAAAAAAAIAAAAAAAEAAAD//wIAAAAAAAEAAAD9/wAAAAAAAAEAAAAEAAAAAAAAAAEAAAD9//3/AAAAAAAAAAD+//3/AAAAAAAAAAD///3/AAAAAAAAAAAAAP3/AAAAAAAAAAABAP3/AAAAAAAAAAACAP3/AAAAAAAAAAADAP3/AAAAAAAAAAAEAP3/AAAAAAAAAAAEAP7/AAAAAAAAAAAEAP//AAAAAAAAAAADAP//AAAAAAAAAAADAAAAAAAAAAAAAAACAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAAAAAAAAAAAAD+/wAAAAAAAAAAAAD+////AAAAAAAAAAD9////AAAAAAAAAAD9//7/AAAAAAAAAAD+//7/AAAAAAAAAAD///7/AAAAAAAAAAAAAP7/AAAAAAAAAAABAP7/AAAAAAAAAAACAP7/AAAAAAAAAAADAP7/AAAAAAAAAAACAP//AAAAAAAAAAABAP//AAAAAAAAAAAAAP//AAAAAAAAAAD/////AAAAAAAAAAD8////AAAAAAEAAAD8//7/AAAAAAEAAAD8//3/AAAAAAEAAAD8//z/AAAAAAEAAAD9//z/AAAAAAEAAAD+//z/AAAAAAEAAAD///z/AAAAAAEAAAAAAPz/AAAAAAEAAAABAPz/AAAAAAEAAAACAPz/AAAAAAEAAAADAPz/AAAAAAEAAAAEAPz/AAAAAAEAAAAFAPz/AAAAAAEAAAAFAP3/AAAAAAEAAAAGAP3/AAAAAAEAAAAGAP7/AAAAAAAAAAAGAP//AAAAAAEAAAAFAP//AAAAAAEAAAAFAAAAAAAAAAEAAAAFAP7/AAAAAAAAAAAHAP7/AAAAAAAAAAAHAP//AAAAAAAAAAAHAAAAAAAAAAAAAAAHAAEAAAAAAAAAAAAGAAAAAAAAAAAAAAAGAAEAAAAAAAAAAAAFAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAAEAAIAAAAAAAAAAAADAAIAAAAAAAAAAAADAAMAAAAAAAAAAAACAAMAAAAAAAAAAAABAAMAAAAAAAAAAAAAAAMAAAAAAAAAAAD//wMAAAAAAAAAAAD+/wMAAAAAAAAAAAD+/wIAAAAAAAAAAAD9/wIAAAAAAAAAAAD9/wEAAAAAAAAAAAD8/wEAAAAAAAAAAAD8/wAAAAAAAAAAAAD7/wAAAAAAAAAAAAD7////AAAAAAAAAAD7//7/AAAAAAAAAAD7//3/AAAAAAAAAAD7//z/AAAAAAAAAAAHAP3/AAAAAAAAAAAHAPz/AAAAAAAAAAAGAPz/AAAAAAAAAAAGAPv/AAAAAAAAAAAFAPv/AAAAAAAAAAAEAPv/AAAAAAAAAAADAPv/AAAAAAAAAAACAPv/AAAAAAAAAAABAPv/AAAAAAAAAAAAAPv/AAAAAAAAAAD///v/AAAAAAAAAAD+//v/AAAAAAAAAAD9//v/AAAAAAAAAAD8//v/AAAAAAAAAAD7//v/AAAAAAAAAAA=")
 tile_set = SubResource("TileSet_0e48y")
 script = ExtResource("2_bwgqs")
 player = NodePath("../Player")
@@ -135,7 +182,6 @@ offset_left = -13.0
 offset_top = -25.0
 offset_right = 13.0
 offset_bottom = -20.0
-max_value = 20000.0
 show_percentage = false
 script = ExtResource("5_ihpsq")
 
@@ -163,6 +209,11 @@ script = ExtResource("8_v5bp3")
 [node name="PointLight2D" type="PointLight2D" parent="Player" unique_id=1716417385]
 texture = SubResource("GradientTexture2D_br8fx")
 script = SubResource("GDScript_nrb0v")
+
+[node name="levelup" type="AnimatedSprite2D" parent="Player" unique_id=468325143]
+position = Vector2(15.999998, 1.9073486e-06)
+scale = Vector2(0.5408163, 0.53157896)
+sprite_frames = SubResource("SpriteFrames_br8fx")
 
 [node name="spawnlayer" type="TileMapLayer" parent="." unique_id=1806730659]
 script = ExtResource("8_nrb0v")

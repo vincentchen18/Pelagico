@@ -32,7 +32,19 @@ var stamina: float = maxstamina
 @onready var xpbar: ProgressBar = $xpbar
 @onready var light: PointLight2D = $PointLight2D
 var animtimer: float = 0.15
+@onready var levelup_fx: AnimatedSprite2D = $levelup
+@export var visibility := 1.0
+func play_levelup():
+	levelup_fx.visible = true
+	levelup_fx.frame = 0
+	levelup_fx.play("default")
+func _ready():
+	levelup_fx.top_level = true
+	levelup_fx.visible = false
+	levelup_fx.animation_finished.connect(func(): levelup_fx.visible = false)
+
 func _physics_process(delta):
+	levelup_fx.global_position = global_position
 	if healthbar.health <= 0.0:
 		healthbar.health = healthbar.max_health
 		xpbar.death()
@@ -44,7 +56,7 @@ func _physics_process(delta):
 	var tx = global_position.x / 32.0
 	var lt = clamp((tx - shallow_x) / (deep_x - shallow_x), 0.0, 1.0)
 	var target_scale = lerp(shallow_scale, deep_scale, lt)
-	light.texture_scale = lerp(light.texture_scale, target_scale, delta * 3.0)
+	light.texture_scale = lerp(light.texture_scale, target_scale * visibility, delta * 3.0)
 	var speed_mult = lerp(shallow_speed_mult, deep_speed_mult, lt)
 	cooldown_timer = max(cooldown_timer - delta, 0.0)
 	dash_hit_window = max(dash_hit_window - delta, 0.0)
