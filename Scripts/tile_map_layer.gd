@@ -6,17 +6,16 @@ const SARDINE = preload("res://enemys/sardine.tscn")
 const ANGLERFISH = preload("res://enemys/anglerfish.tscn")
 const SHARK = preload("res://enemys/shark.tscn")
 const SCALLOP = preload("res://enemys/scallop.tscn")
-
+const BOSS = preload("res://enemys/bossSquid.tscn")
+var boss_spawned := false
 const CRAB_CHANCE = 0.05
 const SARDINE_CHANCE = 0.04
 const ANGLERFISH_CHANCE = 0.05
 const SHARK_CHANCE = 0.15
 const SCALLOP_CHANCE = 0.04
-
 const BOSS_CELL := Vector2i(404, 0)
 const ARENA_RADIUS := 18
 const WALL_START := 428
-
 var worldmap: Dictionary = {}
 var noise = FastNoiseLite.new()
 var depthnoise = FastNoiseLite.new()
@@ -24,7 +23,6 @@ var oceantilespos = Vector2i(0, 1)
 var world_seed := 0
 @export var player: Node2D
 @export var unload_dist := 2
-
 func _ready() -> void:
 	world_seed = randi()
 	noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
@@ -33,6 +31,10 @@ func _ready() -> void:
 	depthnoise.noise_type = FastNoiseLite.TYPE_SIMPLEX
 	depthnoise.seed = world_seed + 1
 	depthnoise.frequency = 0.03
+	var b = BOSS.instantiate()
+	get_parent().add_child.call_deferred(b)
+	b.global_position = to_global(map_to_local(BOSS_CELL))
+	boss_spawned = true
 func _process(_delta: float) -> void:
 	var playerchunky: Vector2i = playerchunk(player.global_position)
 	for x in range(-2 + playerchunky.x, 3 + playerchunky.x):
@@ -50,6 +52,8 @@ func clear_chunk(key: Vector2i) -> void:
 	var miny = key.y * 8 * 32
 	var maxy = miny + 8 * 32
 	for e in get_tree().get_nodes_in_group("enemy"):
+		if e.is_in_group("boss"):
+			continue
 		var p = e.global_position
 		if p.x >= minx and p.x < maxx and p.y >= miny and p.y < maxy:
 			e.queue_free()
@@ -130,7 +134,7 @@ func spawn_for_zone(cell: Vector2i, globalx: int, globaly: int) -> void:
 		3:
 			if cell_rng(globalx, globaly, 2).randf() < SARDINE_CHANCE: spawn_school(SARDINE, cell, globalx, globaly)
 			if cell_rng(globalx, globaly, 2).randf() < ANGLERFISH_CHANCE: spawn(ANGLERFISH, cell)
-			if cell_rng(globalx, globaly, 1).randf() < SHARK_CHANCE/40: spawn(SHARK, cell)
+			if cell_rng(globalx, globaly, 1).randf() < SHARK_CHANCE/50: spawn(SHARK, cell)
 		4:
 			if cell_rng(globalx, globaly, 2).randf() < ANGLERFISH_CHANCE*1.5: spawn(ANGLERFISH, cell)
 			if cell_rng(globalx, globaly, 1).randf() < SHARK_CHANCE/10: spawn(SHARK, cell)

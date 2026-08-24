@@ -5,6 +5,7 @@ var cooldown_timer := 0.0
 var dash_dir := Vector2.RIGHT
 var dash_hit_window := 0.0
 var dash_hit_list := []
+@onready var ink_overlay: TextureRect = $InkLayer/InkSplatter
 @export var speed := 235
 @export var dash_speed := speed*2
 @export var dash_time := 0.03
@@ -132,3 +133,10 @@ func _physics_process(delta):
 func hit(amount):
 	healthbar.take_damage(amount)
 	since_hit = 0.0
+func ink_splatter():
+	ink_overlay.rotation = randf_range(0, TAU)
+	ink_overlay.scale.x = 1.0 if randf() < 0.5 else -1.0
+	ink_overlay.scale.y = 1.0 if randf() < 0.5 else -1.0
+	ink_overlay.modulate.a = 1.0
+	var tw = create_tween()
+	tw.tween_property(ink_overlay, "modulate:a", 0.0, 3.0)

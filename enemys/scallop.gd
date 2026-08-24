@@ -5,7 +5,7 @@ extends CharacterBody2D
 @onready var player = get_node_or_null("/root/ocean/Player")
 @export var max_health := 50.0
 @export var fire_interval := 2.0
-@export var projectile_speed := 200.0
+@export var projectile_speed := 150.0
 @export var projectile_damage := 20.0
 @export var regen_delay := 10.0
 @export var regen_amt := 0.03
@@ -52,6 +52,6 @@ func shoot(dir: Vector2) -> void:
 func die():
 	var xpbar = get_node_or_null("/root/ocean/Player/xpbar")
 	if xpbar:
-		xpbar.gain_xp(7.0)
+		xpbar.gain_xp(9.0)
 		xpbar.update_bar()
 	queue_free()

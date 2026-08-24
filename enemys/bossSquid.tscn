@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://dphrloavcasm2"]
+
+[ext_resource type="Script" uid="uid://df2rg1w3amggu" path="res://enemys/boss_squid.gd" id="1_epeeg"]
+[ext_resource type="Texture2D" uid="uid://b8yrblwjqakfr" path="res://Assets/squid.png" id="2_epeeg"]
+[ext_resource type="Script" uid="uid://dv2a77uxam7p1" path="res://enemys/bosshealth.gd" id="3_epeeg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_br8fx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_epeeg")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wad7g"]
+size = Vector2(43, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wm13b"]
+size = Vector2(43, 20)
+
+[node name="bossSquid" type="CharacterBody2D" unique_id=522453425]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_epeeg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1827616383]
+position = Vector2(7.1054274e-15, -1.0728836e-06)
+rotation = 3.1415927
+scale = Vector2(0.08, 0.08)
+sprite_frames = SubResource("SpriteFrames_br8fx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1405066182]
+position = Vector2(-1.5, 0)
+rotation = 1.5707964
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_wad7g")
+
+[node name="health" type="ProgressBar" parent="." unique_id=1012203974]
+offset_right = 27.0
+offset_bottom = 4.0
+max_value = 10000.0
+show_percentage = false
+script = ExtResource("3_epeeg")
+
+[node name="attackHitbox" type="Area2D" parent="." unique_id=33987728]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attackHitbox" unique_id=1696018257]
+position = Vector2(-2, 0)
+rotation = 1.5707964
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_wm13b")
+
+[connection signal="body_entered" from="attackHitbox" to="." method="_on_attack_hitbox_body_entered"]

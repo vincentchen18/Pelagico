@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://c1juk3sfm3e2x"]
+
+[ext_resource type="Script" uid="uid://dlyi5ootw8efx" path="res://enemys/projectile.gd" id="1_1s5um"]
+[ext_resource type="Texture2D" uid="uid://gsp8sssxpeor" path="res://Assets/ball_of_squid.png" id="2_t6yvp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_br8fx"]
+radius = 5.0
+
+[node name="projectile" type="Area2D" unique_id=448643292]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_1s5um")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=632619288]
+scale = Vector2(0.015, 0.015)
+texture = ExtResource("2_t6yvp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=142310654]
+shape = SubResource("CircleShape2D_br8fx")

@@ -19,6 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://d3ddld6fihftu" path="res://Assets/levelup/levelup-8.png.png" id="16_duqj3"]
 [ext_resource type="Texture2D" uid="uid://c3wle2ltmcskk" path="res://Assets/levelup/levelup-9.png.png" id="17_v4vv0"]
 [ext_resource type="Texture2D" uid="uid://dxo5qi8rcl2jx" path="res://Assets/levelup/levelup-10.png.png" id="18_xiarv"]
+[ext_resource type="Texture2D" uid="uid://xml1fqwawcxe" path="res://Assets/spatter.png" id="19_7120d"]
+[ext_resource type="Script" uid="uid://dhmay7w1b8vd5" path="res://boss_arrow.gd" id="20_k7sri"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v5bp3"]
 texture = ExtResource("2_nrb0v")
@@ -182,6 +184,7 @@ offset_left = -13.0
 offset_top = -25.0
 offset_right = 13.0
 offset_bottom = -20.0
+max_value = 10000.0
 show_percentage = false
 script = ExtResource("5_ihpsq")
 
@@ -214,6 +217,23 @@ script = SubResource("GDScript_nrb0v")
 position = Vector2(15.999998, 1.9073486e-06)
 scale = Vector2(0.5408163, 0.53157896)
 sprite_frames = SubResource("SpriteFrames_br8fx")
+
+[node name="InkLayer" type="CanvasLayer" parent="Player" unique_id=784199420]
+
+[node name="InkSplatter" type="TextureRect" parent="Player/InkLayer" unique_id=2006155973]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(627, 627)
+mouse_filter = 2
+texture = ExtResource("19_7120d")
+
+[node name="BossArrow" type="Polygon2D" parent="Player" unique_id=243334548]
+color = Color(1, 0, 0, 1)
+script = ExtResource("20_k7sri")
 
 [node name="spawnlayer" type="TileMapLayer" parent="." unique_id=1806730659]
 script = ExtResource("8_nrb0v")
