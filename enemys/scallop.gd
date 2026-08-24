@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var max_health := 50.0
 @export var fire_interval := 2.0
 @export var projectile_speed := 150.0
-@export var projectile_damage := 20.0
+@export var projectile_damage := 8.0
 @export var regen_delay := 10.0
 @export var regen_amt := 0.03
 const PROJECTILE = preload("res://enemys/scallopshots.tscn")
