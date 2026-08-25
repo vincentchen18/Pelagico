@@ -6,10 +6,9 @@ extends Polygon2D
 
 func _ready() -> void:
 	polygon = PackedVector2Array([
-		Vector2(30, -6),
-		Vector2(30, 6),
-		Vector2(-10, 6),
-		Vector2(-10, -6)
+		Vector2(30, 0),
+		Vector2(-10, -12),
+		Vector2(-10, 12)
 	])
 	color = Color(1, 0.2, 0.2)
 	top_level = true

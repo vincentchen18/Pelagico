@@ -12,6 +12,7 @@ var stage := 0
 @export var regens := [0.08, 0.1, 0.1, 0.12, 0.14, 0.16]
 @export var regens_delays := [5.0, 4.5, 4.0, 3.7, 3.5, 3.3]
 @export var visibility := [1.0, 1.2, 1.3, 1.5, 1.8, 2.0]
+@export var dash_cooldowns := [1.5, 1.3, 1.0, 0.8, 0.6, 0.5]
 
 func gain_xp(num: float):
 	xp += num
@@ -22,6 +23,7 @@ func gain_xp(num: float):
 		max_value = growth_thresholds[stage]
 		max_xp = growth_thresholds[stage]
 		healthbar.max_health = health_bars[stage]
+		healthbar.health = health_bars[stage] # full heal
 		healthbar.update_bar()
 		player.base_damage = damages[stage]
 		player.speed = speeds[stage]
@@ -30,6 +32,7 @@ func gain_xp(num: float):
 		player.regen_delay = regens_delays[stage]
 		player.since_hit = 5.0
 		player.visibility = visibility[stage]
+		player.dash_cooldown = dash_cooldowns[stage]
 	update_bar()
 		
 func death():
@@ -48,11 +51,15 @@ func _ready() -> void:
 	add_theme_stylebox_override("background", bg)
 	update_bar()
 func update_bar():
-	value = xp
-	max_value = max_xp
-	var t := float(xp) / max_xp
+	if stage >= growth_thresholds.size() - 1:
+		max_value = 1
+		value = 1
+	else:
+		max_value = max_xp
+		value = xp
+	var t := float(value) / max_value
 	var fill := StyleBoxFlat.new()
-	fill.bg_color = Color("#FBC835") 
+	fill.bg_color = Color("#FBC835")
 	add_theme_stylebox_override("fill", fill)
 
 func _physics_process(delta: float) -> void:

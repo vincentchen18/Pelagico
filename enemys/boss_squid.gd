@@ -18,8 +18,8 @@ var hit_cd := 0.0
 @export var aim_time := 0.5
 @export var projectile_speed := 150.0
 @export var projectile_damage := 40.0
-@export var regen_delay := 16.0
-@export var regen_amt := 0.001
+@export var regen_delay := 25.0 # take a long tim eto heal so player is still making progres
+@export var regen_amt := 0.01
 @export var wake_range := 600.0
 @export var engage_range := 600.0
 const PROJECTILE = preload("res://enemys/projectile.tscn")
@@ -108,6 +108,9 @@ func _physics_process(delta: float) -> void:
 			aiming = true
 			aim_timer = aim_time
 	move_and_slide()
+	if dashing and is_on_wall():
+		dashing = false
+		dash_cd = randf_range(dash_interval_min, dash_interval_max)
 	rotation = heading.angle() - PI / 2
 func shoot(dir: Vector2) -> void:
 	var p = PROJECTILE.instantiate()
