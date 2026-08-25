@@ -28,7 +28,6 @@ var dash_hit_list := []
 @export var deep_speed_mult := 0.85
 var since_hit := 999.0
 var stamina: float = maxstamina
-@onready var sprite: Node2D = $Sprite2D
 @onready var healthbar: ProgressBar = $healthbar
 @onready var xpbar: ProgressBar = $xpbar
 @onready var light: PointLight2D = $PointLight2D
