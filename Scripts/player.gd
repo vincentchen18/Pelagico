@@ -39,13 +39,15 @@ func _ready():
 	levelup_fx.top_level = true
 	levelup_fx.visible = false
 	levelup_fx.animation_finished.connect(func(): levelup_fx.visible = false)
+func respawn():
+	healthbar.health = healthbar.max_health
+	xpbar.death()
+	global_position = Vector2(0, 0)
+	healthbar.update_bar()
 func _physics_process(delta):
 	levelup_fx.global_position = global_position
 	if healthbar.health <= 0.0:
-		healthbar.health = healthbar.max_health
-		xpbar.death()
-		global_position = Vector2(0, 0)
-		healthbar.update_bar()
+		get_node("/root/ocean/DeathScreen").show_death()
 	since_hit += delta
 	if since_hit >= regen_delay and healthbar.health < healthbar.max_health:
 		healthbar.heal(healthbar.max_health * regen_amt * delta)

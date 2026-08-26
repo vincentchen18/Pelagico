@@ -20,11 +20,13 @@
 [ext_resource type="Texture2D" uid="uid://c3wle2ltmcskk" path="res://Assets/levelup/levelup-9.png.png" id="17_v4vv0"]
 [ext_resource type="Texture2D" uid="uid://dxo5qi8rcl2jx" path="res://Assets/levelup/levelup-10.png.png" id="18_xiarv"]
 [ext_resource type="Texture2D" uid="uid://xml1fqwawcxe" path="res://Assets/spatter.png" id="19_7120d"]
+[ext_resource type="Texture2D" uid="uid://cd3cbwaaasgsb" path="res://Assets/squid-compass.png" id="20_duqj3"]
 [ext_resource type="Script" uid="uid://dhmay7w1b8vd5" path="res://boss_arrow.gd" id="20_k7sri"]
 [ext_resource type="AudioStream" uid="uid://1307mkphywxa" path="res://Assets/shallows.mp3" id="22_gvirt"]
 [ext_resource type="Script" uid="uid://cexshffslb4ra" path="res://musicplayer.gd" id="23_gvirt"]
 [ext_resource type="AudioStream" uid="uid://cwe77pv7oj57k" path="res://Assets/depths.mp3" id="24_ayk8t"]
 [ext_resource type="Script" uid="uid://cqayrvijhc2ug" path="res://musicplayer2.gd" id="24_lghcm"]
+[ext_resource type="Script" uid="uid://psdan75qd0bq" path="res://death_screen.gd" id="27_v4vv0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v5bp3"]
 texture = ExtResource("2_nrb0v")
@@ -113,20 +115,6 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
-[sub_resource type="GDScript" id="GDScript_nrb0v"]
-script/source = "extends PointLight2D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_br8fx"]
 animations = [{
 "frames": [{
@@ -214,7 +202,6 @@ script = ExtResource("8_v5bp3")
 
 [node name="PointLight2D" type="PointLight2D" parent="Player" unique_id=1716417385]
 texture = SubResource("GradientTexture2D_br8fx")
-script = SubResource("GDScript_nrb0v")
 
 [node name="levelup" type="AnimatedSprite2D" parent="Player" unique_id=468325143]
 position = Vector2(15.999998, 1.9073486e-06)
@@ -234,8 +221,9 @@ pivot_offset = Vector2(627, 627)
 mouse_filter = 2
 texture = ExtResource("19_7120d")
 
-[node name="BossArrow" type="Polygon2D" parent="Player" unique_id=243334548]
-color = Color(1, 0, 0, 1)
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1599889009]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("20_duqj3")
 script = ExtResource("20_k7sri")
 
 [node name="spawnlayer" type="TileMapLayer" parent="." unique_id=1806730659]
@@ -251,3 +239,49 @@ script = ExtResource("23_gvirt")
 [node name="ZoneMusic2" type="AudioStreamPlayer" parent="." unique_id=1263717841]
 stream = ExtResource("24_ayk8t")
 script = ExtResource("24_lghcm")
+
+[node name="DeathScreen" type="CanvasLayer" parent="." unique_id=1553231410]
+process_mode = 3
+visible = false
+script = ExtResource("27_v4vv0")
+
+[node name="Dim" type="ColorRect" parent="DeathScreen" unique_id=51432713]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.50980395)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DeathScreen" unique_id=365752372]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="DeathScreen/VBoxContainer" unique_id=122835533]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "You died!"
+horizontal_alignment = 1
+
+[node name="RespawnButton" type="Button" parent="DeathScreen/VBoxContainer" unique_id=1819846718]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+text = "Respawn"
+
+[node name="MainMenuButton" type="Button" parent="DeathScreen/VBoxContainer" unique_id=2063220630]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+text = "Main Menu"
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="DeathScreen" unique_id=1393521083]
+process_mode = 3
+title = "Return to menu? Your progress will be lost."

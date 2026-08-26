@@ -57,10 +57,9 @@ func update_bar():
 	else:
 		max_value = max_xp
 		value = xp
-	var t := float(value) / max_value
 	var fill := StyleBoxFlat.new()
 	fill.bg_color = Color("#FBC835")
 	add_theme_stylebox_override("fill", fill)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	position = get_parent().get_node("AnimatedSprite2D").global_position + Vector2(-13, 25)
