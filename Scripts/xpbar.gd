@@ -15,6 +15,8 @@ var stage := 0
 @export var dash_cooldowns := [1.5, 1.3, 1.0, 0.8, 0.6, 0.5]
 
 func gain_xp(num: float):
+	if stage >= growth_thresholds.size() - 1:
+		healthbar.heal(num/5)
 	xp += num
 	while stage < growth_thresholds.size() - 1 and xp >= growth_thresholds[stage]:
 		player.play_levelup()

@@ -44,6 +44,7 @@ func respawn():
 	xpbar.death()
 	global_position = Vector2(0, 0)
 	healthbar.update_bar()
+	rotation = 0
 func _physics_process(delta):
 	levelup_fx.global_position = global_position
 	if healthbar.health <= 0.0:
