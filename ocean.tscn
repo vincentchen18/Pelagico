@@ -21,12 +21,12 @@
 [ext_resource type="Texture2D" uid="uid://dxo5qi8rcl2jx" path="res://Assets/levelup/levelup-10.png.png" id="18_xiarv"]
 [ext_resource type="Texture2D" uid="uid://xml1fqwawcxe" path="res://Assets/spatter.png" id="19_7120d"]
 [ext_resource type="Texture2D" uid="uid://cd3cbwaaasgsb" path="res://Assets/squid-compass.png" id="20_duqj3"]
-[ext_resource type="Script" uid="uid://dhmay7w1b8vd5" path="res://boss_arrow.gd" id="20_k7sri"]
+[ext_resource type="Script" uid="uid://dhmay7w1b8vd5" path="res://Scripts/boss_arrow.gd" id="20_k7sri"]
 [ext_resource type="AudioStream" uid="uid://1307mkphywxa" path="res://Assets/shallows.mp3" id="22_gvirt"]
-[ext_resource type="Script" uid="uid://cexshffslb4ra" path="res://musicplayer.gd" id="23_gvirt"]
+[ext_resource type="Script" uid="uid://cexshffslb4ra" path="res://Scripts/musicplayer.gd" id="23_gvirt"]
 [ext_resource type="AudioStream" uid="uid://cwe77pv7oj57k" path="res://Assets/depths.mp3" id="24_ayk8t"]
-[ext_resource type="Script" uid="uid://cqayrvijhc2ug" path="res://musicplayer2.gd" id="24_lghcm"]
-[ext_resource type="Script" uid="uid://psdan75qd0bq" path="res://death_screen.gd" id="27_v4vv0"]
+[ext_resource type="Script" uid="uid://cqayrvijhc2ug" path="res://Scripts/musicplayer2.gd" id="24_lghcm"]
+[ext_resource type="Script" uid="uid://psdan75qd0bq" path="res://Scripts/death_screen.gd" id="27_v4vv0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v5bp3"]
 texture = ExtResource("2_nrb0v")

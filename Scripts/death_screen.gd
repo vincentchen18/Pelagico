@@ -1,13 +1,10 @@
 extends CanvasLayer
-
 @onready var player = get_node("/root/ocean/Player")
-
 func _ready() -> void:
 	visible = false
 	$VBoxContainer/RespawnButton.pressed.connect(_on_respawn)
 	$VBoxContainer/MainMenuButton.pressed.connect(_on_menu_pressed)
 	$ConfirmationDialog.confirmed.connect(_do_menu)
-
 func show_death() -> void:
 	visible = true
 	get_tree().paused = true

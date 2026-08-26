@@ -17,7 +17,6 @@ func _ready() -> void:
 	var fill := StyleBoxFlat.new()
 	fill.bg_color = Color(0.2, 0.8, 0.3) 
 	add_theme_stylebox_override("fill", fill)
-
 	var bg := StyleBoxFlat.new()
 	bg.bg_color = Color(0.1, 0.1, 0.1)   
 	add_theme_stylebox_override("background", bg)

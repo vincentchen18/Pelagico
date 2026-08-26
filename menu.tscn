@@ -3,10 +3,10 @@
 [ext_resource type="FontFile" uid="uid://cuxpxuhrj7ygt" path="res://Assets/pelagicofont.png" id="1_lti8b"]
 [ext_resource type="Script" uid="uid://v00ufk8tdad4" path="res://Scripts/titletext.gd" id="2_ouk20"]
 [ext_resource type="Script" uid="uid://ftbahd27ipa0" path="res://Scripts/button.gd" id="3_mae5d"]
-[ext_resource type="Script" uid="uid://c8acpx01um2hk" path="res://creditsbutton.gd" id="4_4hy44"]
-[ext_resource type="Script" uid="uid://d4fimb2eoxgt" path="res://instructionsbutton.gd" id="4_ecwwl"]
-[ext_resource type="Script" uid="uid://ci4a1l6k6ub4i" path="res://close_credits.gd" id="5_ytr4m"]
-[ext_resource type="Script" uid="uid://dhqewb1en26x" path="res://close_instructions.gd" id="6_l48gv"]
+[ext_resource type="Script" uid="uid://c8acpx01um2hk" path="res://Scripts/creditsbutton.gd" id="4_4hy44"]
+[ext_resource type="Script" uid="uid://d4fimb2eoxgt" path="res://Scripts/instructionsbutton.gd" id="4_ecwwl"]
+[ext_resource type="Script" uid="uid://ci4a1l6k6ub4i" path="res://Scripts/close_credits.gd" id="5_ytr4m"]
+[ext_resource type="Script" uid="uid://dhqewb1en26x" path="res://Scripts/close_instructions.gd" id="6_l48gv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mae5d"]
 bg_color = Color(0.22803542, 0.7504563, 0.6161048, 1)
