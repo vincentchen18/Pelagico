@@ -5,10 +5,11 @@ var cooldown_timer := 0.0
 var dash_dir := Vector2.RIGHT
 var dash_hit_window := 0.0
 var dash_hit_list := []
+var dash_start_pos := Vector2.ZERO
 @onready var ink_overlay: TextureRect = $InkLayer/InkSplatter
 @export var speed := 235
 @export var dash_speed := speed*2
-@export var dash_time := 0.03
+@export var dash_time := 0.08
 @export var dash_cooldown := 1.5
 @export var base_damage := 20.0
 @export var acceleration := 4.0
@@ -76,6 +77,7 @@ func _physics_process(delta):
 		move_and_slide()
 		if dash_timer <= 0.0:
 			dashing = false
+			_spawn_dash_trail(dash_start_pos, global_position)
 		return
 	if Input.is_action_just_pressed("dash") and cooldown_timer <= 0.0:
 		dashing = true
@@ -84,6 +86,7 @@ func _physics_process(delta):
 		cooldown_timer = dash_cooldown
 		dash_hit_list.clear()
 		dash_dir = Vector2.RIGHT.rotated(rotation)
+		dash_start_pos = global_position
 	var turn = Input.get_axis("left", "right")
 	rotation += turn * turn_speed * delta
 	var rotforwardspeed = speed * 0.8
@@ -130,3 +133,23 @@ func ink_splatter():
 	ink_overlay.modulate.a = 1.0
 	var tw = create_tween()
 	tw.tween_property(ink_overlay, "modulate:a", 0.0, 3.0)
+func _make_ghost() -> Sprite2D:
+	var ghost = Sprite2D.new()
+	ghost.texture = $AnimatedSprite2D.sprite_frames.get_frame_texture($AnimatedSprite2D.animation, $AnimatedSprite2D.frame)
+	ghost.global_rotation = $AnimatedSprite2D.global_rotation
+	ghost.scale = $AnimatedSprite2D.scale * scale
+	ghost.modulate = Color(0.75, 0.85, 1.0, 0.5)
+	return ghost
+func _spawn_dash_trail(from: Vector2, to: Vector2):
+	var dist = from.distance_to(to)
+	var count = int(dist / 10.0)
+	count = clamp(count, 2, 20)
+	for i in count:
+		var t = float(i) / (count - 1)
+		var ghost = _make_ghost()
+		get_parent().add_child(ghost)
+		ghost.global_position = from.lerp(to, t)
+		var tw = ghost.create_tween()
+		tw.tween_interval(t * 0.06)
+		tw.tween_property(ghost, "modulate:a", 0.0, 0.15).set_ease(Tween.EASE_IN)
+		tw.tween_callback(ghost.queue_free)
