@@ -73,8 +73,8 @@ offset_bottom = 239.0
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxFlat_mae5d")
 text = "Credits
-Vincent - most mechanics, scripting
-Lucas - most UI, music
+Vincent - most mechanics, most scripting, and most UI
+Lucas - some UI, music
 Jeremy - most sprite art
 Justin - Most environment art and special
 effects art

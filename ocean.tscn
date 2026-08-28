@@ -222,7 +222,7 @@ mouse_filter = 2
 texture = ExtResource("19_7120d")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=1599889009]
-scale = Vector2(0.8, 0.8)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("20_duqj3")
 script = ExtResource("20_k7sri")
 

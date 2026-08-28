@@ -17,10 +17,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wad7g"]
-size = Vector2(50, 35)
+size = Vector2(65, 38)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_br8fx"]
-size = Vector2(65, 35)
+size = Vector2(65, 38)
 
 [sub_resource type="Gradient" id="Gradient_3n1vd"]
 offsets = PackedFloat32Array(0, 0.012048192, 0.560241)
