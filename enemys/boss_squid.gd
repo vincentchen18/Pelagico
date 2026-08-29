@@ -119,6 +119,10 @@ func shoot(dir: Vector2) -> void:
 	p.setup(dir, projectile_speed, projectile_damage)
 func die():
 	win()
-	queue_free()
 func win():
-	print("YOU WIN") # replace this with the actual winscreen
+	print('u won')
+	visible = false
+	healthbar.visible = false
+	set_physics_process(false)
+	await get_tree().create_timer(1.5).timeout
+	get_tree().change_scene_to_file("res://winscreen.tscn")

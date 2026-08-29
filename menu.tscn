@@ -7,6 +7,44 @@
 [ext_resource type="Script" uid="uid://d4fimb2eoxgt" path="res://Scripts/instructionsbutton.gd" id="4_ecwwl"]
 [ext_resource type="Script" uid="uid://ci4a1l6k6ub4i" path="res://Scripts/close_credits.gd" id="5_ytr4m"]
 [ext_resource type="Script" uid="uid://dhqewb1en26x" path="res://Scripts/close_instructions.gd" id="6_l48gv"]
+[ext_resource type="Texture2D" uid="uid://b81nndfdskqww" path="res://Assets/tutorial.png" id="8_kk3ma"]
+[ext_resource type="Texture2D" uid="uid://djoor7qv6ixkh" path="res://Assets/menubkg.png" id="9_nrnbx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kk3ma"]
+bg_color = Color(1, 1, 1, 0.47058824)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5h80m"]
+bg_color = Color(1, 1, 1, 0.7764706)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iqepy"]
+bg_color = Color(1, 1, 1, 0.7764706)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nrnbx"]
+bg_color = Color(1, 1, 1, 0.7764706)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1wq0"]
+bg_color = Color(1, 1, 1, 0.47058824)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ls4m"]
+bg_color = Color(1, 1, 1, 0.7764706)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dwrpx"]
+bg_color = Color(1, 1, 1, 0.7764706)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g7jxm"]
+bg_color = Color(1, 1, 1, 0.7764706)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jspdm"]
+bg_color = Color(1, 1, 1, 0.47058824)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ndjb"]
+bg_color = Color(1, 1, 1, 0.7764706)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oxnod"]
+bg_color = Color(1, 1, 1, 0.7764706)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gd0jp"]
+bg_color = Color(1, 1, 1, 0.7764706)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mae5d"]
 bg_color = Color(0.22803542, 0.7504563, 0.6161048, 1)
@@ -43,6 +81,10 @@ offset_top = -59.0
 offset_right = 13.0
 offset_bottom = 18.0
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_kk3ma")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5h80m")
+theme_override_styles/hover = SubResource("StyleBoxFlat_iqepy")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_nrnbx")
 text = "Play"
 script = ExtResource("3_mae5d")
 
@@ -52,6 +94,10 @@ offset_top = 36.0
 offset_right = 13.0
 offset_bottom = 113.0
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_h1wq0")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3ls4m")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dwrpx")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_g7jxm")
 text = "Instructions"
 script = ExtResource("4_ecwwl")
 
@@ -61,16 +107,20 @@ offset_top = 131.0
 offset_right = 13.0
 offset_bottom = 208.0
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_jspdm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4ndjb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_oxnod")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_gd0jp")
 text = "Credits"
 script = ExtResource("4_4hy44")
 
 [node name="Credits" type="Label" parent="." unique_id=2108325914]
 visible = false
-offset_left = -550.0
+offset_left = -614.0
 offset_top = -272.0
 offset_right = 309.0
-offset_bottom = 239.0
-theme_override_font_sizes/font_size = 40
+offset_bottom = 189.0
+theme_override_font_sizes/font_size = 35
 theme_override_styles/normal = SubResource("StyleBoxFlat_mae5d")
 text = "Credits
 Vincent - most mechanics, most scripting, and most UI
@@ -80,24 +130,6 @@ Justin - Most environment art and special
 effects art
 Jayden - color of the credits screen
 "
-horizontal_alignment = 1
-
-[node name="Instructions" type="Label" parent="." unique_id=214799704]
-offset_left = -550.0
-offset_top = -272.0
-offset_right = 309.0
-offset_bottom = 239.0
-theme_override_font_sizes/font_size = 15
-theme_override_styles/normal = SubResource("StyleBoxFlat_mae5d")
-text = "Controls:
-W/Up arrow: move forward
-S/Down arrow: move backward
-A/Left arrow: turn left
-S/Right arrow: turn right
-F to dash/attack
-The green bar is your health.
-Kill animals to gain XP (yellow bar) to level up!
-Good luck."
 horizontal_alignment = 1
 
 [node name="close credits" type="Button" parent="." unique_id=1168634925]
@@ -111,13 +143,27 @@ text = "X"
 script = ExtResource("5_ytr4m")
 
 [node name="close instructions" type="Button" parent="." unique_id=1120094183]
-offset_left = 249.0
-offset_top = -272.0
-offset_right = 309.0
-offset_bottom = -219.0
+visible = false
+z_index = 9
+offset_left = 206.0
+offset_top = -307.0
+offset_right = 266.0
+offset_bottom = -254.0
 theme_override_font_sizes/font_size = 32
 text = "X"
 script = ExtResource("6_l48gv")
+
+[node name="Instructions" type="Sprite2D" parent="." unique_id=1440013029]
+visible = false
+position = Vector2(-118, -24)
+scale = Vector2(0.88, 0.88)
+texture = ExtResource("8_kk3ma")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=694749208]
+z_index = -4
+position = Vector2(-105, -35)
+scale = Vector2(4.5, 4.5)
+texture = ExtResource("9_nrnbx")
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
 [connection signal="pressed" from="Button2" to="Button2" method="_on_pressed"]

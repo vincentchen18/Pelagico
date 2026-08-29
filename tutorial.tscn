@@ -1,0 +1,137 @@
+[gd_scene format=3 uid="uid://wvbplao730nk"]
+
+[ext_resource type="Script" uid="uid://c427pweun7tpx" path="res://Scripts/n0.gd" id="1_ehuit"]
+[ext_resource type="Texture2D" uid="uid://cxru13o0txr08" path="res://Assets/teamanimspritesheet.png" id="2_5mrt3"]
+[ext_resource type="FontFile" uid="uid://cuswsohgi5mm7" path="res://FiraCode-Bold.ttf" id="3_rwowx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mm2c"]
+atlas = ExtResource("2_5mrt3")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5k6lc"]
+atlas = ExtResource("2_5mrt3")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6xpf"]
+atlas = ExtResource("2_5mrt3")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pf5i8"]
+atlas = ExtResource("2_5mrt3")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb7br"]
+atlas = ExtResource("2_5mrt3")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q8sbr"]
+atlas = ExtResource("2_5mrt3")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2x06"]
+atlas = ExtResource("2_5mrt3")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00lha"]
+atlas = ExtResource("2_5mrt3")
+region = Rect2(96, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mm5rx"]
+atlas = ExtResource("2_5mrt3")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ifsm"]
+atlas = ExtResource("2_5mrt3")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5bj13"]
+atlas = ExtResource("2_5mrt3")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkapv"]
+atlas = ExtResource("2_5mrt3")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dq0l"]
+atlas = ExtResource("2_5mrt3")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_br8fx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mm2c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5k6lc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6xpf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pf5i8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb7br")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q8sbr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2x06")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00lha")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mm5rx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ifsm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5bj13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wkapv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5dq0l")
+}],
+"loop": 0,
+"name": &"default",
+"speed": 6.0
+}]
+
+[node name="Node2D" type="Node2D" unique_id=540743526]
+script = ExtResource("1_ehuit")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=289543329]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1353555401]
+texture_filter = 1
+position = Vector2(0.99999994, -31.999998)
+scale = Vector2(20, 20)
+sprite_frames = SubResource("SpriteFrames_br8fx")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1191253422]
+position = Vector2(46, -11)
+polygon = PackedVector2Array(-762, -351, -789, 3, -787, 368, -337, 354, -325, -352)
+
+[node name="Polygon2D2" type="Polygon2D" parent="." unique_id=256015766]
+position = Vector2(932, -3)
+polygon = PackedVector2Array(-618, -347, -616.48584, 8.322571, -615, 357, -337, 354, -325, -352)
+
+[node name="Polygon2D3" type="Polygon2D" parent="." unique_id=1753249080]
+position = Vector2(46, -11)
+polygon = PackedVector2Array(-355, 393, -372, 257, 318, 263, 306, 409)
+
+[node name="Label" type="Label" parent="." unique_id=445480551]
+offset_left = -339.0
+offset_top = 377.0
+offset_right = 321.0
+offset_bottom = 446.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_rwowx")
+theme_override_font_sizes/font_size = 50
+text = "A Node Zero Production"
