@@ -10,25 +10,21 @@ Created by Vincent Chen, Lucas Liu, Justin Yeung, and Jeremy Jiang as Team Node 
 
 ### Windows
 
-Navigate to [https://vincentchen18.itch.io/pelagico](https://vincentchen18.itch.io/pelagico) and download the Windows executable of the version you want to play!
-
-github releases page coming soon
+Navigate to [https://vincentchen18.itch.io/pelagico](https://vincentchen18.itch.io/pelagico) and download the Windows executable of the version you want to play! Alternatively, you can also download it from the GitHub releases version, which you can find the links to in the bottom section of this README entitled **Versions**.
 
 ### Mac
 
-Navigate to [https://vincentchen18.itch.io/pelagico](https://vincentchen18.itch.io/pelagico) and download the Mac executable of the version you want to play!
-
-github releases page coming soon
+Navigate to [https://vincentchen18.itch.io/pelagico](https://vincentchen18.itch.io/pelagico) and download the Mac executable of the version you want to play! Alternatively, you can also download it from the GitHub releases version, which you can find the links to in the bottom section of this README entitled **Versions**.
 
 ### Linux
 
-Navigate to [https://vincentchen18.itch.io/pelagico](https://vincentchen18.itch.io/pelagico) and download the Linux executable of the version you want to play!
+Navigate to [https://vincentchen18.itch.io/pelagico](https://vincentchen18.itch.io/pelagico) and download the Linux executable of the version you want to play! Alternatively, you can also download it from the GitHub releases version, which you can find the links to in the bottom section of this README entitled **Versions**.
 
 Note: you may need to first run `chmod +x executable.x86_64` before running `./executable.x86_64` to run the binary.
 
-github releases page coming soon
-
 snapcraft installation instructions coming soon
+
+You can also download the project and source code at the Github repository, located at https://github.com/vincentchen18/Pelagico
 
 ## How to play
 
@@ -97,6 +93,7 @@ Upon death, you do not lose any levels, but you do lose half of your acquired XP
 - Only enemies: crab and sardines
 - Vision reduction for depth zones implemented
 - not much else...
+https://github.com/vincentchen18/Pelagico/releases/tag/alpha
 
 ### Beta test: 25/08/2026
 
@@ -105,10 +102,12 @@ Upon death, you do not lose any levels, but you do lose half of your acquired XP
 - small difficulty tuning
 - music
 - main menu :D
+https://github.com/vincentchen18/Pelagico/releases/tag/beta
 
 ### Competition Release: 31/08/2026
 
-- TBW (to be written)
+- full release of the game, all mobs and features included as stated in this readme.
+
 
 ## Credits
 
