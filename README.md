@@ -112,8 +112,11 @@ https://github.com/vincentchen18/Pelagico/releases/tag/beta
 ## Credits
 
 Vincent Chen - Scripting, Game Mechanics, Documentation, Tutorial, Publication
+
 Lucas Liu - Scripting, Music, Mechanics
+
 Justin Yeung - Environment Art, Menu / Win Screen Art, Mechanics
+
 Jeremy Jiang - Sprite / Character Art, Mechanics
 
 ## AI use
