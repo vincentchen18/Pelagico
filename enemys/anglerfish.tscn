@@ -16,11 +16,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wad7g"]
-size = Vector2(65, 38)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g1mv2"]
+radius = 18.0
+height = 56.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_br8fx"]
-size = Vector2(65, 38)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pd04t"]
+radius = 18.0
+height = 56.0
 
 [sub_resource type="Gradient" id="Gradient_3n1vd"]
 offsets = PackedFloat32Array(0, 0.012048192, 0.560241)
@@ -44,7 +46,8 @@ scale = Vector2(0.05, 0.05)
 sprite_frames = SubResource("SpriteFrames_br8fx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1405066182]
-shape = SubResource("RectangleShape2D_wad7g")
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_g1mv2")
 
 [node name="health" type="ProgressBar" parent="." unique_id=1012203974]
 offset_right = 27.0
@@ -57,7 +60,8 @@ script = ExtResource("3_3n1vd")
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="attackHitbox" unique_id=1696018257]
-shape = SubResource("RectangleShape2D_br8fx")
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_pd04t")
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1812627371]
 position = Vector2(29, 0)

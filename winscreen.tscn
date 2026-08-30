@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c0hntpy3iyvmj"]
 
 [ext_resource type="Texture2D" uid="uid://cdxwtfeknwrvh" path="res://Assets/victory.png" id="1_y55kr"]
-[ext_resource type="Script" uid="uid://clyswmom2gnkf" path="res://victorybutton.gd" id="2_h3yos"]
+[ext_resource type="Script" uid="uid://4e1l12jx31yq" path="res://Scripts/victorybutton.gd" id="2_h3yos"]
 
 [node name="Node2D" type="Node2D" unique_id=540743526]
 
