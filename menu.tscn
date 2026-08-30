@@ -9,6 +9,8 @@
 [ext_resource type="Script" uid="uid://dhqewb1en26x" path="res://Scripts/close_instructions.gd" id="6_l48gv"]
 [ext_resource type="Texture2D" uid="uid://b81nndfdskqww" path="res://Assets/tutorial.png" id="8_kk3ma"]
 [ext_resource type="Texture2D" uid="uid://djoor7qv6ixkh" path="res://Assets/menubkg.png" id="9_nrnbx"]
+[ext_resource type="AudioStream" uid="uid://vvlc3gc41nbw" path="res://Assets/menutheme.mp3" id="10_iqepy"]
+[ext_resource type="Script" uid="uid://bs6l43iqw2fes" path="res://Scripts/audio_stream_player.gd" id="11_h1wq0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kk3ma"]
 bg_color = Color(1, 1, 1, 0.47058824)
@@ -164,6 +166,10 @@ z_index = -4
 position = Vector2(-105, -35)
 scale = Vector2(4.5, 4.5)
 texture = ExtResource("9_nrnbx")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=567993808]
+stream = ExtResource("10_iqepy")
+script = ExtResource("11_h1wq0")
 
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
 [connection signal="pressed" from="Button2" to="Button2" method="_on_pressed"]
