@@ -32,7 +32,7 @@ You can also download the project and source code at the Github repository, loca
 
 The game uses WASD for movement and turning, as well as F to dash. Alternatively, arrows may also be used for movement. Dashing is the only way to attack enemies and it deals damage to an enemy if you dash through them. Dashing through multiple enemies will gradually cause the enemies to take less damage the later they get hit.
 
-You start off as a weak fish with only 100 health and 20 damage in the shallowest area of the ocean. The map is naturally generated using the Simplex Noise Generation algorithm, with a pseudorandom mechanism to blend naturally between ocean depths. There are four different depths of ocean, characterised by their own features and quirks, as well as many enemies.
+You start off as a weak fish with only 100 health and 20 damage in the shallowest area of the ocean. The map is naturally generated using the Simplex Noise Generation algorithm, with a pseudorandom mechanism to blend naturally between ocean depths. There are four different depths of ocean, characterised by their own features and quirks, as well as many enemies. The further right you swim, the deeper the ocean that you get into.
 
 ### Beach Zone
 
