@@ -93,6 +93,9 @@ Upon death, you do not lose any levels, but you do lose half of your acquired XP
 - Only enemies: crab and sardines
 - Vision reduction for depth zones implemented
 - not much else...
+
+Available at:
+
 https://github.com/vincentchen18/Pelagico/releases/tag/alpha
 
 ### Beta test: 25/08/2026
@@ -102,12 +105,18 @@ https://github.com/vincentchen18/Pelagico/releases/tag/alpha
 - small difficulty tuning
 - music
 - main menu :D
+
+Available at:
+
 https://github.com/vincentchen18/Pelagico/releases/tag/beta
 
 ### Competition Release: 31/08/2026
 
 - full release of the game, all mobs and features included as stated in this readme.
 
+Available at:
+
+https://github.com/vincentchen18/Pelagico/releases/tag/competition-release
 
 ## Credits
 
