@@ -89,7 +89,7 @@ func _physics_process(delta):
 		dash_start_pos = global_position
 	var turn = Input.get_axis("left", "right")
 	rotation += turn * turn_speed * delta
-	var rotforwardspeed = speed * 0.8
+	var rotforwardspeed = speed * 0.25
 	var forward = Vector2.RIGHT.rotated(rotation)
 	var thrust = 0
 	if Input.is_action_pressed("forward"):
